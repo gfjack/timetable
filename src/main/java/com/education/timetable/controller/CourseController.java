@@ -1,14 +1,14 @@
 package com.education.timetable.controller;
 
 import com.education.timetable.api.CourseApi;
+import com.education.timetable.model.vo.CourseCreateVo;
 import com.education.timetable.model.vo.CourseVo;
+import com.education.timetable.service.CourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +16,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("")
 public class CourseController implements CourseApi {
+
+  @Resource
+  private CourseService courseService;
 
   @ApiOperation("获取单个课程")
   @RequestMapping(value = "/v1/courses/{course_id}", method = RequestMethod.GET)
@@ -32,10 +35,10 @@ public class CourseController implements CourseApi {
   }
 
   @ApiOperation("创建课程")
-  @RequestMapping(value = "/v1/courses/{course_id}/action/add", method = RequestMethod.POST)
+  @RequestMapping(value = "/v1/courses", method = RequestMethod.POST)
   @Override
-  public CourseVo create(@PathVariable("course_id") UUID courseId) {
-    return null;
+  public CourseVo create(@RequestBody CourseCreateVo courseCreateVo) {
+    return courseService.create(courseCreateVo);
   }
 
   @ApiOperation("删除单个课程")
