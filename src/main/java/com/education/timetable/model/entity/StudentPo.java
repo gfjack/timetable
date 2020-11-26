@@ -1,10 +1,12 @@
 package com.education.timetable.model.entity;
 
 
+import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,6 +16,7 @@ import java.util.List;
 @ApiModel("学生")
 @Entity
 @Table(name = "t_student")
+@TypeDef(name = "json", typeClass = JsonStringType.class)
 @Data
 public class StudentPo {
 

@@ -1,9 +1,11 @@
 package com.education.timetable.model.entity;
 
+import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,6 +17,7 @@ import java.util.UUID;
 @ApiModel("课程")
 @Entity
 @Table(name = "t_course")
+@TypeDef(name = "json", typeClass = JsonStringType.class)
 @Data
 public class CoursePo {
 
