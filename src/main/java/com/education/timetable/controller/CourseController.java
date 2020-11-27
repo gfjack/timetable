@@ -12,6 +12,8 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.UUID;
 
+import static com.education.timetable.converter.CourseConverter.toCoursePo;
+
 @Api("课程api")
 @RestController
 @RequestMapping("")
@@ -38,7 +40,7 @@ public class CourseController implements CourseApi {
   @RequestMapping(value = "/v1/courses", method = RequestMethod.POST)
   @Override
   public CourseVo create(@RequestBody CourseCreateVo courseCreateVo) {
-    return courseService.create(courseCreateVo);
+    return courseService.create(toCoursePo(courseCreateVo));
   }
 
   @ApiOperation("删除单个课程")
