@@ -15,6 +15,7 @@
     <name>timetable</name>
 
     <properties>
+        <!-- Tomcat 配置     -->
         <java.version>1.8</java.version>
         <start-class>com.education.timetable.TimetableApplication</start-class>
         <tomcat.version>8.5.60</tomcat.version>
@@ -39,6 +40,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- rabbitMq       -->
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit-test</artifactId>
@@ -55,16 +58,33 @@
             <artifactId>commons-collections4</artifactId>
             <version>4.1</version>
         </dependency>
+
+        <!-- fastjson       -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.70</version>
         </dependency>
+
+        <!-- lombok       -->
+        <!--@Data 注解要先引入lombok 不用get\set 简化代码-->
+        <!--
+        @Log4j/@Slf4j   ： 注在类上，提供对应的 Logger 对象，变量名为 log
+        @Data ： 注在类上，提供类的get、set、equals、hashCode、canEqual、toString方法
+        @AllArgsConstructor ： 注在类上，提供类的全参构造
+        @NoArgsConstructor ： 注在类上，提供类的无参构造
+        @Setter ： 注在属性上，提供 set 方法
+        @Getter ： 注在属性上，提供 get 方法
+        @EqualsAndHashCode ：    注在类上，提供对应的 equals 和 hashCode 方法
+        @Data 不支持多种参数构造器的重载，虽然省去了手动创建getter/setter方法的麻烦，
+        -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+        <!-- swagger注解       -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -75,6 +95,8 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
         </dependency>
+
+        <!-- hibernate       -->
         <dependency>
             <groupId>com.vladmihalcea</groupId>
             <artifactId>hibernate-types-52</artifactId>
