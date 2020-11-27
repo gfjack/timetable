@@ -5,6 +5,7 @@ import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -13,12 +14,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @ApiModel("学生")
 @Entity
 @Table(name = "t_student")
 @TypeDef(name = "json", typeClass = JsonStringType.class)
 @Data
-public class StudentPo {
+public class StudentPo extends BasePo {
 
   @ApiModelProperty("学生id")
   @Id
