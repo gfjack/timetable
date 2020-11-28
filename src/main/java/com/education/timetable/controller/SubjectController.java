@@ -55,14 +55,14 @@ public class SubjectController implements SubjectApi {
 
   @Override
   @ApiOperation("删除单个学科")
-  @RequestMapping(value = "/v1/subjects/{subject_id}", method = RequestMethod.GET)
+  @RequestMapping(value = "/v1/subjects/{subject_id}", method = RequestMethod.DELETE)
   public void delete(@ApiParam("学生id") @PathVariable("subject_id") UUID subjectId) {
 
   }
 
   @Override
   @ApiOperation("批量删除学科")
-  @RequestMapping(value = "/v1/subjects/actions/delete", method = RequestMethod.GET)
+  @RequestMapping(value = "/v1/subjects/actions/delete", method = RequestMethod.DELETE)
   public void delete(@ApiParam("学生id列表") @RequestBody List<Long> studentIds) {
 
   }
