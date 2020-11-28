@@ -32,11 +32,11 @@ public class TeacherPo extends BasePo {
   @ApiModelProperty("联系方式")
   private String contact;
 
-  @ApiModelProperty("教室简介")
+  @ApiModelProperty("教师简介")
   private String teacherInfo;
 
   @ApiModelProperty("任教学科id")
-  private Long subjectId;
+  private Long subjectIds;
 
   @ApiModelProperty("任教课程")
   @Type(type = "json")
