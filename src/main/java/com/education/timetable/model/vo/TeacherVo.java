@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class TeacherVo {
+
   @ApiModelProperty("教师id")
   private Long teacherId;
 
@@ -14,4 +15,7 @@ public class TeacherVo {
 
   @ApiModelProperty("联系方式")
   private String contact;
+
+  @ApiModelProperty("老师简介")
+  private String teacherInfo;
 }

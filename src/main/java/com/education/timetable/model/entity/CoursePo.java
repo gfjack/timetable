@@ -31,6 +31,9 @@ public class CoursePo extends BasePo {
   @ApiModelProperty("课程名称")
   private String courseName;
 
+  @ApiModelProperty("课程简介")
+  private String courseIntroduction;
+
   @ApiModelProperty("学科id")
   @Type(type = "uuid-char")
   private UUID subjectId;
@@ -38,8 +41,8 @@ public class CoursePo extends BasePo {
   @ApiModelProperty("学科名称")
   private String subjectName;
 
-  @ApiModelProperty("课程人数")
-  private Integer courseNumOfStudents;
+  @ApiModelProperty("老师id")
+  private Long teacherId;
 
   @ApiModelProperty("参与学生")
   @Type(type = "json")

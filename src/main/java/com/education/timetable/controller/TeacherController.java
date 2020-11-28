@@ -1,47 +1,75 @@
 package com.education.timetable.controller;
 
 import com.education.timetable.api.TeacherApi;
+import com.education.timetable.model.vo.TeacherCreateVo;
+import com.education.timetable.model.vo.TeacherUpdateVo;
 import com.education.timetable.model.vo.TeacherVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Api("老师api")
 @RestController
 @RequestMapping("")
 public class TeacherController implements TeacherApi {
 
+  @Override
   @ApiOperation("获取单个老师")
   @RequestMapping(value = "/v1/teachers/{teacher_id}", method = RequestMethod.GET)
-  @Override
-  public TeacherVo get(@PathVariable("teacher_id") Long teacherId) {
+  public TeacherVo get(@ApiParam("老师id") @PathVariable("teacher_id") Long teacherId) {
     return null;
   }
 
+  @Override
+  @ApiOperation("创建老师")
+  @RequestMapping(value = "/v1/teachers", method = RequestMethod.POST)
+  public TeacherVo create(@ApiParam("创建老师vo") @RequestBody TeacherCreateVo teacherCreateVo) {
+    return null;
+  }
+
+  @Override
+  @ApiOperation("根据任教学科搜索老师")
+  @RequestMapping(value = "/v1/teachers/actions/search_by_subjects", method = RequestMethod.POST)
+  public List<TeacherVo> searchBySubject(@ApiParam("学科id") @RequestParam("subject_id") UUID subjectId) {
+    return null;
+  }
+
+  @Override
+  @ApiOperation("根据任教课程搜索老师")
+  @RequestMapping(value = "/v1/teachers/actions/search_by_courses", method = RequestMethod.POST)
+  public TeacherVo searchByCourse(@ApiParam("课程id") @RequestParam("course_id") UUID courseId) {
+    return null;
+  }
+
+  @Override
   @ApiOperation("获取多个老师")
   @RequestMapping(value = "/v1/teachers", method = RequestMethod.GET)
-  @Override
-  public List<TeacherVo> get() {
+  public List<TeacherVo> getAll() {
     return null;
   }
 
-  @ApiOperation("删除单个老师")
-  @RequestMapping(value = "/v1/teachers/{teacher_id}/actions/delete", method = RequestMethod.DELETE)
   @Override
-  public void delete(@PathVariable("teacher_id") Long teacherId) {
+  @ApiOperation("删除单个老师")
+  @RequestMapping(value = "/v1/teachers/{teacher_id}", method = RequestMethod.DELETE)
+  public void delete(@ApiParam("老师id") @PathVariable("teacher_id") Long teacherId) {
 
   }
 
-  @ApiOperation("更新单个老师")
-  // todo 重新定义 updateVo
-  @RequestMapping(value = "/v1/teachers/{teacher_id}/actions/update", method = RequestMethod.PUT)
   @Override
-  public TeacherVo update(@PathVariable("teacher_id") Long teacherId) {
+  @ApiOperation("批量删除老师")
+  @RequestMapping(value = "/v1/teachers/actions/delete", method = RequestMethod.DELETE)
+  public void delete(@ApiParam("老师id列表") @RequestBody List<Long> teacherIds) {
+
+  }
+
+  @Override
+  @ApiOperation("更新单个老师")
+  @RequestMapping(value = "/v1/teachers/{teacher_id}/actions/update", method = RequestMethod.PUT)
+  public TeacherVo update(@ApiParam("老师id") @PathVariable("teacher_id") Long teacherId, @ApiParam("更新vo") @RequestBody TeacherUpdateVo teacherUpdateVo) {
     return null;
   }
 

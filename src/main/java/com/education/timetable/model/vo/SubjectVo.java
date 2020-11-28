@@ -13,6 +13,9 @@ public class SubjectVo {
   @ApiModelProperty("学科名称")
   private String subjectName;
 
-  @ApiModelProperty("学科总人数")
-  private Integer totalStudents;
+  @ApiModelProperty("学科简介")
+  private String subjectIntroduction;
+
+  @ApiModelProperty("学科阶段")
+  private Integer sprint;
 }

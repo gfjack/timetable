@@ -1,26 +1,24 @@
 package com.education.timetable.model.vo;
 
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NonNull;
 
 import java.util.Date;
 
 @Data
-public class CourseUpdateVo {
+public class CourseSearchVo {
 
-	@ApiModelProperty("课程名称")
-	private String courseName;
+	@ApiModelProperty("学生id")
+	private Long studentId;
 
-	@ApiModelProperty("课程简介")
-	private String courseIntroduction;
-
+	@NonNull
 	@ApiModelProperty("开始时间")
 	private Date startTime;
 
+	@NonNull
 	@ApiModelProperty("结束时间")
 	private Date endTime;
-
-	@ApiModelProperty("教师id")
-	private Long teacherId;
 
 }

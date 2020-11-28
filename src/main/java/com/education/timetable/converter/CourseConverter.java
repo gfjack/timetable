@@ -4,7 +4,6 @@ import com.education.timetable.model.entity.CoursePo;
 import com.education.timetable.model.vo.CourseCreateVo;
 import com.education.timetable.model.vo.CourseVo;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -17,7 +16,7 @@ public class CourseConverter {
     courseVo.setCourseId(course.getCourseId());
     courseVo.setCourseName(course.getCourseName());
     courseVo.setSubjectName(course.getSubjectName());
-    courseVo.setCourseNumOfStudents(course.getCourseNumOfStudents());
+    courseVo.setRegisteredStudents(course.getRegisteredStudents());
     courseVo.setStartTime(course.getStartTime());
     courseVo.setEndTime(course.getEndTime());
 
@@ -30,8 +29,7 @@ public class CourseConverter {
     coursePo.setCourseName(courseVo.getCourseName());
     coursePo.setSubjectId(UUID.randomUUID());
     coursePo.setSubjectName(courseVo.getSubjectName());
-    coursePo.setCourseNumOfStudents(courseVo.getCourseNumOfStudents());
-    coursePo.setRegisteredStudents(new ArrayList<>());
+    coursePo.setRegisteredStudents(courseVo.getRegisteredStudents());
     coursePo.setStartTime(courseVo.getStartTime());
     coursePo.setEndTime(courseVo.getEndTime());
 
@@ -44,8 +42,7 @@ public class CourseConverter {
     coursePo.setCourseName(courseCreateVo.getCourseName());
     coursePo.setSubjectId(UUID.randomUUID());
     coursePo.setSubjectName(courseCreateVo.getSubjectName());
-    coursePo.setCourseNumOfStudents(courseCreateVo.getCourseNumOfStudents());
-    coursePo.setRegisteredStudents(new ArrayList<>());
+    coursePo.setRegisteredStudents(courseCreateVo.getRegisteredStudents());
     coursePo.setStartTime(courseCreateVo.getStartTime());
     coursePo.setEndTime(courseCreateVo.getEndTime());
 

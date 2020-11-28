@@ -6,18 +6,24 @@ import org.hibernate.annotations.Type;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 public class CourseCreateVo {
 
+	@ApiModelProperty("课程id")
+	private UUID courseId;
+
 	@ApiModelProperty("课程名称")
 	private String courseName;
+
+	private String courseIntroduction;
 
 	@ApiModelProperty("学科名称")
 	private String subjectName;
 
-	@ApiModelProperty("课程人数")
-	private Integer courseNumOfStudents;
+	@ApiModelProperty("教师id")
+	private Long teacherId;
 
 	@ApiModelProperty("参与学生")
 	@Type(type = "json")

@@ -1,13 +1,13 @@
 package com.education.timetable.controller;
 
 import com.education.timetable.api.SubjectApi;
+import com.education.timetable.model.vo.SubjectCreateVo;
+import com.education.timetable.model.vo.SubjectUpdateVo;
 import com.education.timetable.model.vo.SubjectVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,33 +17,52 @@ import java.util.UUID;
 @RequestMapping("")
 public class SubjectController implements SubjectApi {
 
+  @Override
   @ApiOperation("获取单个学科")
   @RequestMapping(value = "/v1/subjects/{subject_id}", method = RequestMethod.GET)
-  @Override
-  public SubjectVo get(@PathVariable("subject_id") UUID subjectId) {
+  public SubjectVo get(@ApiParam("学科id") @PathVariable("subject_id") UUID subjectId) {
     return null;
   }
 
-  @ApiOperation("获取多个学科")
-  @RequestMapping(value = "/v1/subjects", method = RequestMethod.GET)
   @Override
+  @ApiOperation("获取全部学科")
+  @RequestMapping(value = "/v1/subjects", method = RequestMethod.GET)
   public List<SubjectVo> getAll() {
     return null;
   }
 
-  @ApiOperation("删除单个学科")
-  @RequestMapping(value = "/v1/subjects/{subject_id}/actions/delete", method = RequestMethod.GET)
   @Override
-  public void delete(@PathVariable("subject_id") UUID subjectId) {
-
-  }
-
-  @ApiOperation("更新单个学科")
-  // todo 重新定义 updateVo
-  @RequestMapping(value = "/v1/subjects/{subject_id}/actions/update", method = RequestMethod.PUT)
-  @Override
-  public SubjectVo update(@PathVariable("subject_id") UUID subjectId) {
+  @ApiOperation("创建学科")
+  @RequestMapping(value = "/v1/subjects", method = RequestMethod.POST)
+  public SubjectVo create(@ApiParam("创建学科参数") @RequestBody SubjectCreateVo subjectCreateVo) {
     return null;
   }
 
+  @Override
+  @ApiOperation("根据阶段查找学科")
+  @RequestMapping(value = "/v1/subjects/actions/search_by_sprint", method = RequestMethod.POST)
+  public List<SubjectVo> search(@ApiParam("阶段") @RequestParam("sprint") Integer sprint) {
+    return null;
+  }
+
+  @Override
+  @ApiOperation("删除单个学科")
+  @RequestMapping(value = "/v1/subjects/{subject_id}", method = RequestMethod.GET)
+  public void delete(@ApiParam("学生id") @PathVariable("subject_id") UUID subjectId) {
+
+  }
+
+  @Override
+  @ApiOperation("批量删除学科")
+  @RequestMapping(value = "/v1/subjects/actions/delete", method = RequestMethod.GET)
+  public void delete(@ApiParam("学生id列表") @RequestBody List<Long> studentIds) {
+
+  }
+
+  @Override
+  @ApiOperation("更新单个学科")
+  @RequestMapping(value = "/v1/subjects/{subject_id}/actions/update", method = RequestMethod.PUT)
+  public SubjectVo update(@ApiParam("学科id") @PathVariable("subject_id") UUID subjectId, @ApiParam("更新vo") @RequestBody SubjectUpdateVo subjectUpdateVo) {
+    return null;
+  }
 }

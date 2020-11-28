@@ -6,13 +6,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @ApiModel("学生")
@@ -29,6 +27,9 @@ public class StudentPo extends BasePo {
   @ApiModelProperty("学生信息")
   private String studentInfo;
 
+  @ApiModelProperty("学生联系方式")
+  private String studentContactInfo;
+
   @ApiModelProperty("学生姓名")
   private String studentName;
 
@@ -38,8 +39,9 @@ public class StudentPo extends BasePo {
   @ApiModelProperty("家长联系方式")
   private String parentContactInfo;
 
-  @ApiModelProperty("拥有的学科")
-  @Type(type = "json")
-  private List<Long> subjects;
+  @ApiModelProperty("年级")
+  private String gradeLevel;
 
+  @ApiModelProperty("学校名称")
+  private String schoolName;
 }
