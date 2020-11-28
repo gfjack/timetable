@@ -4,6 +4,7 @@ import com.education.timetable.api.StudentApi;
 import com.education.timetable.model.vo.StudentCreateVo;
 import com.education.timetable.model.vo.StudentUpdateVo;
 import com.education.timetable.model.vo.StudentVo;
+import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -34,6 +35,13 @@ public class StudentController implements StudentApi {
   @ApiOperation("获取全部学生")
   @RequestMapping(value = "/v1/students", method = RequestMethod.GET)
   public List<StudentVo> getAll() {
+    return null;
+  }
+
+  @Override
+  @ApiOperation("分页搜索学生")
+  @RequestMapping(value = "/v1/students/actions/query", method = RequestMethod.POST)
+  public PagerResult<StudentVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
     return null;
   }
 

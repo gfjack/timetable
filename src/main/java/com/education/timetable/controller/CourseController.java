@@ -5,6 +5,7 @@ import com.education.timetable.model.vo.CourseCreateVo;
 import com.education.timetable.model.vo.CourseSearchVo;
 import com.education.timetable.model.vo.CourseUpdateVo;
 import com.education.timetable.model.vo.CourseVo;
+import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,6 +31,13 @@ public class CourseController implements CourseApi {
   @ApiOperation("获取多个课程")
   @RequestMapping(value = "/v1/courses", method = RequestMethod.GET)
   public List<CourseVo> getAll() {
+    return null;
+  }
+
+  @Override
+  @ApiOperation("分页获取课程")
+  @RequestMapping(value = "/v1/courses/actions/query", method = RequestMethod.POST)
+  public PagerResult<CourseVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
     return null;
   }
 

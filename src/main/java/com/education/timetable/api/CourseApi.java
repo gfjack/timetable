@@ -4,6 +4,7 @@ import com.education.timetable.model.vo.CourseCreateVo;
 import com.education.timetable.model.vo.CourseSearchVo;
 import com.education.timetable.model.vo.CourseUpdateVo;
 import com.education.timetable.model.vo.CourseVo;
+import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -24,7 +25,9 @@ public interface CourseApi {
     @RequestMapping(value = "/v1/courses", method = RequestMethod.GET)
     List<CourseVo> getAll();
 
-    // todo 分页
+    @ApiOperation("分页获取课程")
+    @RequestMapping(value = "/v1/courses/actions/query", method = RequestMethod.POST)
+    PagerResult<CourseVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
 
     @ApiOperation("根据时间段搜索课程")
     @RequestMapping(value = "/v1/courses/actions/search_by_time", method = RequestMethod.POST)

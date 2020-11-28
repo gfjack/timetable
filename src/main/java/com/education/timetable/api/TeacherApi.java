@@ -3,6 +3,7 @@ package com.education.timetable.api;
 import com.education.timetable.model.vo.TeacherCreateVo;
 import com.education.timetable.model.vo.TeacherUpdateVo;
 import com.education.timetable.model.vo.TeacherVo;
+import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -22,7 +23,9 @@ public interface TeacherApi {
   @RequestMapping(value = "/v1/teachers", method = RequestMethod.POST)
   TeacherVo create(@ApiParam("创建老师vo") @RequestBody TeacherCreateVo teacherCreateVo);
 
-  // todo 分页
+  @ApiOperation("分页查询")
+  @RequestMapping(value = "/v1/teachers/actions/query", method = RequestMethod.POST)
+  PagerResult<TeacherVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
 
   @ApiOperation("根据任教学科搜索老师")
   @RequestMapping(value = "/v1/teachers/actions/search_by_subjects", method = RequestMethod.POST)

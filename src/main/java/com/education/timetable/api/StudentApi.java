@@ -3,13 +3,11 @@ package com.education.timetable.api;
 import com.education.timetable.model.vo.StudentCreateVo;
 import com.education.timetable.model.vo.StudentUpdateVo;
 import com.education.timetable.model.vo.StudentVo;
+import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +26,9 @@ public interface StudentApi {
   @RequestMapping(value = "/v1/students", method = RequestMethod.GET)
   List<StudentVo> getAll();
 
-  // todo 分页
+  @ApiOperation("分页搜索学生")
+  @RequestMapping(value = "/v1/students/actions/query", method = RequestMethod.POST)
+  PagerResult<StudentVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
 
 //  @ApiOperation("参数搜索学生")
 //  @RequestMapping(value = "/v1/students/actions/search", method = RequestMethod.POST)

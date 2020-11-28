@@ -10,14 +10,13 @@ import java.util.Date;
 @Data
 public class CourseSearchVo {
 
+	@NonNull
 	@ApiModelProperty("学生id")
 	private Long studentId;
 
-	@NonNull
 	@ApiModelProperty("开始时间")
 	private Date startTime;
 
-	@NonNull
 	@ApiModelProperty("结束时间")
 	private Date endTime;
 
