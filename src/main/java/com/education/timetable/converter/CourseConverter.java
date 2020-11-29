@@ -6,9 +6,7 @@ import com.education.timetable.model.vo.CourseVo;
 
 import java.util.UUID;
 
-/**
- * @author jack
- */
+/** @author jack */
 public class CourseConverter {
 
   public static CourseVo toCourseVo(CoursePo course) {
@@ -48,5 +46,4 @@ public class CourseConverter {
 
     return coursePo;
   }
-
 }

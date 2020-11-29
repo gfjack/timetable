@@ -37,22 +37,25 @@ public class CourseController implements CourseApi {
   @Override
   @ApiOperation("分页获取课程")
   @RequestMapping(value = "/v1/courses/actions/query", method = RequestMethod.POST)
-  public PagerResult<CourseVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
+  public PagerResult<CourseVo> query(
+      @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
     return null;
   }
 
   @Override
   @ApiOperation("根据时间段搜索课程")
   @RequestMapping(value = "/v1/courses/actions/search_by_time", method = RequestMethod.POST)
-  public List<CourseVo> getCoursesByTimeDuration(@ApiParam("开始时间") @RequestParam("start_time") Date startTime,
-                                          @ApiParam("开始时间") @RequestParam("end_time") Date endTime) {
+  public List<CourseVo> getCoursesByTimeDuration(
+      @ApiParam("开始时间") @RequestParam("start_time") Date startTime,
+      @ApiParam("开始时间") @RequestParam("end_time") Date endTime) {
     return null;
   }
 
   @Override
   @ApiOperation("根据学科搜索课程")
   @RequestMapping(value = "/v1/courses/actions/search_by_subject", method = RequestMethod.POST)
-  public List<CourseVo> getCoursesBySubjectId(@ApiParam("学科id") @RequestParam("subject_id") UUID subjectId) {
+  public List<CourseVo> getCoursesBySubjectId(
+      @ApiParam("学科id") @RequestParam("subject_id") UUID subjectId) {
     return null;
   }
 
@@ -73,22 +76,19 @@ public class CourseController implements CourseApi {
   @Override
   @ApiOperation("删除单个课程")
   @RequestMapping(value = "/v1/courses/{course_id}", method = RequestMethod.DELETE)
-  public void delete(@ApiParam("课程id") @PathVariable("course_id") UUID courseId) {
-
-  }
+  public void delete(@ApiParam("课程id") @PathVariable("course_id") UUID courseId) {}
 
   @Override
   @ApiOperation("批量课程")
   @RequestMapping(value = "/v1/courses/action/delete", method = RequestMethod.DELETE)
-  public void delete(@ApiParam("课程id列表") @RequestBody List<Long> courseIds) {
-
-  }
+  public void delete(@ApiParam("课程id列表") @RequestBody List<Long> courseIds) {}
 
   @Override
   @ApiOperation("更新单个课程")
   @RequestMapping(value = "/v1/courses/{course_id}", method = RequestMethod.PUT)
-  public CourseVo update(@ApiParam("课程id") @PathVariable("course_id") UUID courseId, @ApiParam("更新参数") @RequestBody CourseUpdateVo courseUpdateVo) {
+  public CourseVo update(
+      @ApiParam("课程id") @PathVariable("course_id") UUID courseId,
+      @ApiParam("更新参数") @RequestBody CourseUpdateVo courseUpdateVo) {
     return null;
   }
-
 }

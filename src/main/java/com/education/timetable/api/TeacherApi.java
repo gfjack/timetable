@@ -25,7 +25,8 @@ public interface TeacherApi {
 
   @ApiOperation("分页查询")
   @RequestMapping(value = "/v1/teachers/actions/query", method = RequestMethod.POST)
-  PagerResult<TeacherVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
+  PagerResult<TeacherVo> query(
+      @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
 
   @ApiOperation("根据任教学科搜索老师")
   @RequestMapping(value = "/v1/teachers/actions/search_by_subjects", method = RequestMethod.POST)
@@ -49,6 +50,7 @@ public interface TeacherApi {
 
   @ApiOperation("更新单个老师")
   @RequestMapping(value = "/v1/teachers/{teacher_id}/actions/update", method = RequestMethod.PUT)
-  TeacherVo update(@ApiParam("老师id") @PathVariable("teacher_id") Long teacherId, @ApiParam("更新vo") @RequestBody TeacherUpdateVo teacherUpdateVo);
-
+  TeacherVo update(
+      @ApiParam("老师id") @PathVariable("teacher_id") Long teacherId,
+      @ApiParam("更新vo") @RequestBody TeacherUpdateVo teacherUpdateVo);
 }

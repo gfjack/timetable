@@ -31,6 +31,4 @@ public class SubjectPo extends BasePo {
 
   @ApiModelProperty("学科阶段")
   private Integer sprint;
-
-
 }

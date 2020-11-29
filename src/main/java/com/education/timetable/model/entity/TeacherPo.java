@@ -41,5 +41,4 @@ public class TeacherPo extends BasePo {
   @ApiModelProperty("任教课程")
   @Type(type = "json")
   private List<UUID> courseIds;
-
 }

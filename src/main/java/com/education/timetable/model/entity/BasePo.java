@@ -13,7 +13,6 @@ import java.util.Date;
 @Data
 @MappedSuperclass
 @ApiModel(description = "PO基类")
-
 public abstract class BasePo {
 
   @ApiModelProperty("创建者")
@@ -34,7 +33,7 @@ public abstract class BasePo {
 
   @PrePersist
   protected void onPrePersist() {
-    //新建时候允许传入固定值
+    // 新建时候允许传入固定值
     if (this.createBy == null) {
       this.createBy = 0L;
     }
@@ -47,9 +46,8 @@ public abstract class BasePo {
 
   @PreUpdate
   protected void onPreUpdate() {
-    //更新时候强制修改 传值无效
+    // 更新时候强制修改 传值无效
     this.updateBy = 0L;
     this.updateTime = new Date();
   }
-
 }

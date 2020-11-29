@@ -1,8 +1,6 @@
 package com.education.timetable.api;
 
-import com.education.timetable.model.vo.StudentCreateVo;
-import com.education.timetable.model.vo.StudentUpdateVo;
-import com.education.timetable.model.vo.StudentVo;
+import com.education.timetable.model.vo.*;
 import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +8,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Api("学生api")
 public interface StudentApi {
@@ -28,11 +27,12 @@ public interface StudentApi {
 
   @ApiOperation("分页搜索学生")
   @RequestMapping(value = "/v1/students/actions/query", method = RequestMethod.POST)
-  PagerResult<StudentVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
+  PagerResult<StudentVo> query(
+      @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
 
-//  @ApiOperation("参数搜索学生")
-//  @RequestMapping(value = "/v1/students/actions/search", method = RequestMethod.POST)
-//  List<StudentVo> search(@ApiParam("搜索参数") @RequestBody StudentSearchVo studentSearchVo);
+  //  @ApiOperation("参数搜索学生")
+  //  @RequestMapping(value = "/v1/students/actions/search", method = RequestMethod.POST)
+  //  List<StudentVo> search(@ApiParam("搜索参数") @RequestBody StudentSearchVo studentSearchVo);
 
   @ApiOperation("删除单个学生")
   @RequestMapping(value = "/v1/students/{student_id}", method = RequestMethod.DELETE)
@@ -44,6 +44,23 @@ public interface StudentApi {
 
   @ApiOperation("更新单个学生")
   @RequestMapping(value = "/v1/students/{student_id}/actions/update", method = RequestMethod.PUT)
-  StudentVo update(@ApiParam("学生id") @PathVariable("student_id") Long studentId, @ApiParam("更新参数") @RequestBody StudentUpdateVo studentUpdateVo);
+  StudentVo update(
+      @ApiParam("学生id") @PathVariable("student_id") Long studentId,
+      @ApiParam("更新参数") @RequestBody StudentUpdateVo studentUpdateVo);
 
+  @ApiOperation("报名课程")
+  @RequestMapping(
+      value = "/v1/students/{student_id}/courses/{course_id}/action/register",
+      method = RequestMethod.POST)
+  StudentRegisterVo register(
+      @ApiParam("学生id") @PathVariable("student_id") Long studentId,
+      @ApiParam("课程id") @PathVariable("course_id") UUID courseId);
+
+  @ApiOperation("撤销报名课程 ")
+  @RequestMapping(
+      value = "/v1/students/{student_id}/courses/{course_id}/action/withdraw",
+      method = RequestMethod.PUT)
+  StudentWithdrawVo withdraw(
+      @ApiParam("学生id") @PathVariable("student_id") Long studentId,
+      @ApiParam("课程id") @PathVariable("course_id") UUID courseId);
 }

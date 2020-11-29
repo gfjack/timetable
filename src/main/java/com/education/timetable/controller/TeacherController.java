@@ -35,14 +35,16 @@ public class TeacherController implements TeacherApi {
   @Override
   @ApiOperation("分页查询")
   @RequestMapping(value = "/v1/teachers/actions/query", method = RequestMethod.POST)
-  public PagerResult<TeacherVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
+  public PagerResult<TeacherVo> query(
+      @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
     return null;
   }
 
   @Override
   @ApiOperation("根据任教学科搜索老师")
   @RequestMapping(value = "/v1/teachers/actions/search_by_subjects", method = RequestMethod.POST)
-  public List<TeacherVo> searchBySubject(@ApiParam("学科id") @RequestParam("subject_id") UUID subjectId) {
+  public List<TeacherVo> searchBySubject(
+      @ApiParam("学科id") @RequestParam("subject_id") UUID subjectId) {
     return null;
   }
 
@@ -63,22 +65,19 @@ public class TeacherController implements TeacherApi {
   @Override
   @ApiOperation("删除单个老师")
   @RequestMapping(value = "/v1/teachers/{teacher_id}", method = RequestMethod.DELETE)
-  public void delete(@ApiParam("老师id") @PathVariable("teacher_id") Long teacherId) {
-
-  }
+  public void delete(@ApiParam("老师id") @PathVariable("teacher_id") Long teacherId) {}
 
   @Override
   @ApiOperation("批量删除老师")
   @RequestMapping(value = "/v1/teachers/actions/delete", method = RequestMethod.DELETE)
-  public void delete(@ApiParam("老师id列表") @RequestBody List<Long> teacherIds) {
-
-  }
+  public void delete(@ApiParam("老师id列表") @RequestBody List<Long> teacherIds) {}
 
   @Override
   @ApiOperation("更新单个老师")
   @RequestMapping(value = "/v1/teachers/{teacher_id}/actions/update", method = RequestMethod.PUT)
-  public TeacherVo update(@ApiParam("老师id") @PathVariable("teacher_id") Long teacherId, @ApiParam("更新vo") @RequestBody TeacherUpdateVo teacherUpdateVo) {
+  public TeacherVo update(
+      @ApiParam("老师id") @PathVariable("teacher_id") Long teacherId,
+      @ApiParam("更新vo") @RequestBody TeacherUpdateVo teacherUpdateVo) {
     return null;
   }
-
 }

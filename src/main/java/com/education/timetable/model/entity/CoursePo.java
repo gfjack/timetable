@@ -53,5 +53,4 @@ public class CoursePo extends BasePo {
 
   @ApiModelProperty("结束时间")
   private Date endTime;
-
 }

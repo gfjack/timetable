@@ -35,7 +35,8 @@ public class SubjectController implements SubjectApi {
   @Override
   @ApiOperation("分页查询")
   @RequestMapping(value = "/v1/subjects/actions/query", method = RequestMethod.POST)
-  public PagerResult<SubjectVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
+  public PagerResult<SubjectVo> query(
+      @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
     return null;
   }
 
@@ -56,21 +57,19 @@ public class SubjectController implements SubjectApi {
   @Override
   @ApiOperation("删除单个学科")
   @RequestMapping(value = "/v1/subjects/{subject_id}", method = RequestMethod.DELETE)
-  public void delete(@ApiParam("学生id") @PathVariable("subject_id") UUID subjectId) {
-
-  }
+  public void delete(@ApiParam("学生id") @PathVariable("subject_id") UUID subjectId) {}
 
   @Override
   @ApiOperation("批量删除学科")
   @RequestMapping(value = "/v1/subjects/actions/delete", method = RequestMethod.DELETE)
-  public void delete(@ApiParam("学生id列表") @RequestBody List<Long> studentIds) {
-
-  }
+  public void delete(@ApiParam("学生id列表") @RequestBody List<Long> studentIds) {}
 
   @Override
   @ApiOperation("更新单个学科")
   @RequestMapping(value = "/v1/subjects/{subject_id}/actions/update", method = RequestMethod.PUT)
-  public SubjectVo update(@ApiParam("学科id") @PathVariable("subject_id") UUID subjectId, @ApiParam("更新vo") @RequestBody SubjectUpdateVo subjectUpdateVo) {
+  public SubjectVo update(
+      @ApiParam("学科id") @PathVariable("subject_id") UUID subjectId,
+      @ApiParam("更新vo") @RequestBody SubjectUpdateVo subjectUpdateVo) {
     return null;
   }
 }

@@ -1,6 +1,5 @@
 package com.education.timetable.model.entity;
 
-
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

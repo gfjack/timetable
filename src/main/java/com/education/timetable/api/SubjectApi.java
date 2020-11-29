@@ -25,7 +25,8 @@ public interface SubjectApi {
 
   @ApiOperation("分页查询")
   @RequestMapping(value = "/v1/subjects/actions/query", method = RequestMethod.POST)
-  PagerResult<SubjectVo> query(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
+  PagerResult<SubjectVo> query(
+      @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
 
   @ApiOperation("创建学科")
   @RequestMapping(value = "/v1/subjects", method = RequestMethod.POST)
@@ -45,6 +46,7 @@ public interface SubjectApi {
 
   @ApiOperation("更新单个学科")
   @RequestMapping(value = "/v1/subjects/{subject_id}/actions/update", method = RequestMethod.PUT)
-  SubjectVo update(@ApiParam("学科id") @PathVariable("subject_id") UUID subjectId, @ApiParam("更新vo") @RequestBody SubjectUpdateVo subjectUpdateVo);
-
+  SubjectVo update(
+      @ApiParam("学科id") @PathVariable("subject_id") UUID subjectId,
+      @ApiParam("更新vo") @RequestBody SubjectUpdateVo subjectUpdateVo);
 }
