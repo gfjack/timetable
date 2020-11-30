@@ -29,7 +29,7 @@ public class Swagger2UiConfiguration
             .title("课程表api文档")
             .description("简易家长课程表初始版本")
             .termsOfServiceUrl("")
-            .version("1.0")
+            .version("0.0.2")
             .build();
   }
 }
