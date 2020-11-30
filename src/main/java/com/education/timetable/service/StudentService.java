@@ -1,11 +1,6 @@
 package com.education.timetable.service;
 
-import com.education.timetable.model.entity.StudentPo;
-import com.education.timetable.model.vo.StudentCreateVo;
-import com.education.timetable.model.vo.StudentRegisterVo;
-import com.education.timetable.model.vo.StudentUpdateVo;
-import com.education.timetable.model.vo.StudentVo;
-import com.education.timetable.model.vo.StudentWithdrawVo;
+import com.education.timetable.model.vo.*;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +17,7 @@ public interface StudentService {
 
   boolean deleteOne(String studentId);
 
-  StudentVo UpdateOne(StudentUpdateVo studentUpdateVo);
+  StudentVo updateOne(StudentUpdateVo studentUpdateVo);
 
   StudentRegisterVo register(StudentRegisterVo studentRegisterVo);
 

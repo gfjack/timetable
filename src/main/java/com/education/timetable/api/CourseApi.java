@@ -1,5 +1,6 @@
 package com.education.timetable.api;
 
+import com.education.timetable.constants.enums.Week;
 import com.education.timetable.model.vo.CourseCreateVo;
 import com.education.timetable.model.vo.CourseSearchVo;
 import com.education.timetable.model.vo.CourseUpdateVo;
@@ -36,7 +37,7 @@ public interface CourseApi {
   List<CourseVo> getCoursesByTimeDuration(
       @ApiParam("开始时间") @RequestParam("start_time") Date startTime,
       @ApiParam("开始时间") @RequestParam("end_time") Date endTime,
-      @ApiParam("星期日期") @RequestParam("week_day") Integer day);
+      @ApiParam("星期日期") @RequestParam("week_day") Week day);
 
   @ApiOperation("根据学科搜索课程")
   @RequestMapping(value = "/v1/courses/actions/search_by_subject", method = RequestMethod.POST)
@@ -57,7 +58,7 @@ public interface CourseApi {
 
   @ApiOperation("批量课程")
   @RequestMapping(value = "/v1/courses/action/delete", method = RequestMethod.DELETE)
-  void delete(@ApiParam("课程id列表") @RequestBody List<Long> courseIds);
+  void delete(@ApiParam("课程id列表") @RequestBody List<UUID> courseIds);
 
   @ApiOperation("更新单个课程")
   @RequestMapping(value = "/v1/courses/{course_id}", method = RequestMethod.PUT)

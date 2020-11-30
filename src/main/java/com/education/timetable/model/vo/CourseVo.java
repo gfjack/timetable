@@ -19,9 +19,15 @@ public class CourseVo {
   @ApiModelProperty("课程名称")
   private String courseName;
 
+  @ApiModelProperty("课程简介")
+  private String courseIntroduction;
+
   // todo 拼装
   @ApiModelProperty("学科名称")
   private String subjectName;
+
+  @ApiModelProperty("老师id")
+  private Long teacherId;
 
   @ApiModelProperty("参与学生")
   private List<Long> registeredStudents;

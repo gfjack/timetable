@@ -1,14 +1,19 @@
 package com.education.timetable.exception;
 
 
-public class TimeTableException extends Exception {
+import org.springframework.http.HttpStatus;
+
+public class TimeTableException extends RuntimeException {
 
   public TimeTableException(String message) {
-    super(message);
+    this(HttpStatus.BAD_REQUEST.getReasonPhrase(), message);
   }
 
   public TimeTableException(String message, Throwable throwable) {
     super(message, throwable);
   }
 
+  public TimeTableException(String code, String message) {
+    super(message, new Throwable(code));
+  }
 }

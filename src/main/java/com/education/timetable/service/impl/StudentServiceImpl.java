@@ -1,10 +1,6 @@
 package com.education.timetable.service.impl;
 
-import com.education.timetable.model.vo.StudentCreateVo;
-import com.education.timetable.model.vo.StudentRegisterVo;
-import com.education.timetable.model.vo.StudentUpdateVo;
-import com.education.timetable.model.vo.StudentVo;
-import com.education.timetable.model.vo.StudentWithdrawVo;
+import com.education.timetable.model.vo.*;
 import com.education.timetable.service.StudentService;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +36,7 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  public StudentVo UpdateOne(StudentUpdateVo studentUpdateVo) {
+  public StudentVo updateOne(StudentUpdateVo studentUpdateVo) {
     return null;
   }
 
