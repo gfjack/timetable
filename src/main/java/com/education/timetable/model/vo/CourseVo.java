@@ -1,5 +1,6 @@
 package com.education.timetable.model.vo;
 
+import com.education.timetable.constants.enums.Week;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -28,5 +29,8 @@ public class CourseVo {
 
   @ApiModelProperty("结束时间")
   private Date endTime;
+
+  @ApiModelProperty(value = "日期", example = "周日, 周一, 周二")
+  private Week day;
 
 }

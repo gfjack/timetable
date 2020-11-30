@@ -134,6 +134,11 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>swagger-ui</artifactId>
+            <version>3.26.2</version>
+        </dependency>
     </dependencies>
 
     <build>

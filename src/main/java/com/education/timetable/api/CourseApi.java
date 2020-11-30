@@ -34,7 +34,8 @@ public interface CourseApi {
   @RequestMapping(value = "/v1/courses/actions/search_by_time", method = RequestMethod.POST)
   List<CourseVo> getCoursesByTimeDuration(
       @ApiParam("开始时间") @RequestParam("start_time") Date startTime,
-      @ApiParam("开始时间") @RequestParam("end_time") Date endTime);
+      @ApiParam("开始时间") @RequestParam("end_time") Date endTime,
+      @ApiParam("星期日期") @RequestParam("week_day") Integer day);
 
   @ApiOperation("根据学科搜索课程")
   @RequestMapping(value = "/v1/courses/actions/search_by_subject", method = RequestMethod.POST)

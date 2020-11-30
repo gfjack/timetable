@@ -1,5 +1,6 @@
 package com.education.timetable.model.entity;
 
+import com.education.timetable.constants.enums.Week;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -53,4 +54,7 @@ public class CoursePo extends BasePo {
 
   @ApiModelProperty("结束时间")
   private Date endTime;
+
+  @ApiModelProperty(value = "日期", example = "周日, 周一, 周二")
+  private Week day;
 }
