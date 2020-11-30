@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@Api("学生api")
+@Api(tags = "学生相关接口")
 @RestController
 @RequestMapping("")
 public class StudentController implements StudentApi {

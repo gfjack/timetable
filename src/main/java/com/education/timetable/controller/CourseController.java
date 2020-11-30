@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Api("课程api")
+@Api(tags = "课程相关接口")
 @RestController
 @RequestMapping("")
 public class CourseController implements CourseApi {

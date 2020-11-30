@@ -1,9 +1,11 @@
 package com.education.timetable.model.vo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
+@ApiModel("返回学生vo")
 public class StudentVo {
 
   @ApiModelProperty("学生id")

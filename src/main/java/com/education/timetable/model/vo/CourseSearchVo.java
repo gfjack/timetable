@@ -1,6 +1,7 @@
 package com.education.timetable.model.vo;
 
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NonNull;
@@ -8,6 +9,7 @@ import lombok.NonNull;
 import java.util.Date;
 
 @Data
+@ApiModel("课程搜索vo")
 public class CourseSearchVo {
 
 	@NonNull

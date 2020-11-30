@@ -1,5 +1,6 @@
 package com.education.timetable.model.vo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
+@ApiModel("课程创建vo")
 public class CourseCreateVo {
 
 	@ApiModelProperty("课程id")

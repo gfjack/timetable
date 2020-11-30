@@ -1,11 +1,13 @@
 package com.education.timetable.model.vo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
+@ApiModel("课程更新vo")
 public class CourseUpdateVo {
 
 	@ApiModelProperty("课程名称")

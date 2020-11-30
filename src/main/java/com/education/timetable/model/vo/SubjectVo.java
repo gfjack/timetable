@@ -1,11 +1,13 @@
 package com.education.timetable.model.vo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
+@ApiModel("返回学科vo")
 public class SubjectVo {
   @ApiModelProperty("学科id")
   private UUID subjectId;

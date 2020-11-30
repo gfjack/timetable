@@ -1,5 +1,6 @@
 package com.education.timetable.model.vo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
+@ApiModel("创建老师vo")
 public class TeacherCreateVo {
 
 	@ApiModelProperty("教师姓名")
