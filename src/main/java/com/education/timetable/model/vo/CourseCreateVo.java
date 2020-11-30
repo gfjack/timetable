@@ -7,14 +7,10 @@ import org.hibernate.annotations.Type;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @ApiModel("课程创建vo")
 public class CourseCreateVo {
-
-	@ApiModelProperty("课程id")
-	private UUID courseId;
 
 	@ApiModelProperty("课程名称")
 	private String courseName;

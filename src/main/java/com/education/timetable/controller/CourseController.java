@@ -28,7 +28,7 @@ public class CourseController implements CourseApi {
   }
 
   @Override
-  @ApiOperation("获取多个课程")
+  @ApiOperation("获取全部课程")
   @RequestMapping(value = "/v1/courses", method = RequestMethod.GET)
   public List<CourseVo> getAll() {
     return null;
@@ -47,7 +47,7 @@ public class CourseController implements CourseApi {
   @RequestMapping(value = "/v1/courses/actions/search_by_time", method = RequestMethod.POST)
   public List<CourseVo> getCoursesByTimeDuration(
       @ApiParam("开始时间") @RequestParam("start_time") Date startTime,
-      @ApiParam("开始时间") @RequestParam("end_time") Date endTime,
+      @ApiParam("结束时间") @RequestParam("end_time") Date endTime,
       @ApiParam("星期日期") @RequestParam("week_day") Integer day) {
     return null;
   }
