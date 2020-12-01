@@ -14,6 +14,21 @@ public class TimeTableInitController {
     return new ModelAndView("index");
   }
 
+  @RequestMapping("/message")
+  public ModelAndView toMessage() {
+    return new ModelAndView("message");
+  }
+
+  @RequestMapping("/class")
+  public ModelAndView toClass() {
+    return new ModelAndView("class");
+  }
+
+  @RequestMapping("/model")
+  public ModelAndView toModel() {
+    return new ModelAndView("model");
+  }
+
 //  @RequestMapping("/error")
 //  public String  handleError(HttpServletRequest request, Model model) {
 //
