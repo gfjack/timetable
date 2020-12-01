@@ -2,12 +2,16 @@ package com.education.timetable.service.impl;
 
 import com.education.timetable.constants.enums.Week;
 import com.education.timetable.exception.TimeTableException;
+import com.education.timetable.exception.courseExceptions.CourseException;
+import com.education.timetable.exception.courseExceptions.CourseFailToDeleteException;
+import com.education.timetable.exception.courseExceptions.CourseNotFoundException;
 import com.education.timetable.model.entity.CoursePo;
 import com.education.timetable.model.vo.*;
 import com.education.timetable.repository.CourseRepository;
 import com.education.timetable.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,7 +34,7 @@ public class CourseServiceImpl implements CourseService {
 	private CoursePo load(UUID courseId) {
 		CoursePo coursePo = courseRepository.findByCourseId(courseId);
 		if (null == coursePo) {
-			throw new TimeTableException(String.format("no such course, course id: %s", courseId.toString()));
+			throw new CourseNotFoundException(courseId);
 		}
 
 		return coursePo;
@@ -71,7 +75,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<CourseVo> search(CourseSearchVo courseSearchVo) {
 		if (null == courseSearchVo.getStudentId()) {
-			throw new TimeTableException("student id cannot be null");
+			throw new TimeTableException(HttpStatus.BAD_REQUEST, "student id cannot be null");
 		}
 		List<CoursePo> courses = getStudentRegisteredCourses(courseSearchVo.getStudentId(), courseSearchVo.getDay());
 		List<CoursePo> results = filterCoursesByTime(courses, courseSearchVo.getStartTime(), courseSearchVo.getEndTime());
@@ -85,7 +89,7 @@ public class CourseServiceImpl implements CourseService {
 		try{
 			courseRepository.save(coursePo);
 		} catch (Exception e) {
-			throw new TimeTableException(String.format("fail to delete, reason: %s", e.getMessage()));
+			throw new CourseException(e.getMessage());
 		}
 		return toCourseVo(coursePo);
 	}
@@ -95,8 +99,10 @@ public class CourseServiceImpl implements CourseService {
 		try{
 			load(courseId);
 			courseRepository.deleteById(courseId);
+		} catch (CourseNotFoundException e) {
+			throw e;
 		} catch (Exception e) {
-			throw new TimeTableException(String.format("fail to delete course: %s, reason: %s", courseId, e.getMessage()));
+			throw new CourseFailToDeleteException(courseId, e.getMessage());
 		}
 	}
 
@@ -122,7 +128,7 @@ public class CourseServiceImpl implements CourseService {
 		try{
 			courseRepository.save(coursePo);
 		} catch (Exception e) {
-			throw new TimeTableException(String.format("update course: %s failed, reason: %s", courseId, e.getMessage()));
+			throw new CourseException(e.getMessage(), courseId);
 		}
 		return toCourseVo(coursePo);
 	}
