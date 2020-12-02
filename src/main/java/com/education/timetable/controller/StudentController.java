@@ -3,11 +3,14 @@ package com.education.timetable.controller;
 import com.education.timetable.api.StudentApi;
 import com.education.timetable.model.vo.*;
 import com.education.timetable.model.vo.page.PagerResult;
+import com.education.timetable.service.StudentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,25 +19,28 @@ import java.util.UUID;
 @RequestMapping("")
 public class StudentController implements StudentApi {
 
+  @Autowired
+  StudentService studentService;
+
   @Override
   @ApiOperation("创建学生")
   @RequestMapping(value = "/v1/students", method = RequestMethod.POST)
   public StudentVo create(@ApiParam("创建学生参数") @RequestBody StudentCreateVo studentCreateVo) {
-    return null;
+    return studentService.createStudent(studentCreateVo);
   }
 
   @Override
   @ApiOperation("获取单个学生")
   @RequestMapping(value = "/v1/students/{student_id}", method = RequestMethod.GET)
   public StudentVo get(@ApiParam("学生id") @PathVariable("student_id") Long studentId) {
-    return null;
+    return studentService.getOne(studentId);
   }
 
   @Override
   @ApiOperation("获取全部学生")
   @RequestMapping(value = "/v1/students", method = RequestMethod.GET)
   public List<StudentVo> getAll() {
-    return null;
+    return studentService.getAll();
   }
 
   @Override
@@ -48,12 +54,16 @@ public class StudentController implements StudentApi {
   @Override
   @ApiOperation("删除单个学生")
   @RequestMapping(value = "/v1/students/{student_id}", method = RequestMethod.DELETE)
-  public void delete(@ApiParam("学生id") @PathVariable("student_id") Long studentId) {}
+  public void delete(@ApiParam("学生id") @PathVariable("student_id") Long studentId) {
+    studentService.deleteOne(studentId);
+  }
 
   @Override
   @ApiOperation("批量删除学生")
   @RequestMapping(value = "/v1/students/actions/delete", method = RequestMethod.DELETE)
-  public void delete(@ApiParam("学生id列表") @RequestBody List<Long> studentIds) {}
+  public void delete(@ApiParam("学生id列表") @RequestBody List<Long> studentIds) {
+    studentService.deleteByIds(studentIds);
+  }
 
   @Override
   @ApiOperation("更新单个学生")
@@ -61,7 +71,7 @@ public class StudentController implements StudentApi {
   public StudentVo update(
       @ApiParam("学生id") @PathVariable("student_id") Long studentId,
       @ApiParam("更新参数") @RequestBody StudentUpdateVo studentUpdateVo) {
-    return null;
+    return studentService.updateOne(studentId,studentUpdateVo);
   }
 
   @Override
@@ -72,7 +82,7 @@ public class StudentController implements StudentApi {
   public StudentRegisterVo register(
       @ApiParam("学生id") @PathVariable("student_id") Long studentId,
       @ApiParam("课程id") @PathVariable("course_id") UUID courseId) {
-    return null;
+    return studentService.register(studentId,courseId);
   }
 
   @Override
@@ -83,6 +93,6 @@ public class StudentController implements StudentApi {
   public StudentWithdrawVo withdraw(
       @ApiParam("学生id") @PathVariable("student_id") Long studentId,
       @ApiParam("课程id") @PathVariable("course_id") UUID courseId) {
-    return null;
+    return studentService.withdraw(studentId,courseId);
   }
 }

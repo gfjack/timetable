@@ -1,26 +1,70 @@
 package com.education.timetable.service;
 
-import com.education.timetable.model.vo.*;
+import com.education.timetable.model.vo.StudentCreateVo;
+import com.education.timetable.model.vo.StudentRegisterVo;
+import com.education.timetable.model.vo.StudentUpdateVo;
+import com.education.timetable.model.vo.StudentVo;
+import com.education.timetable.model.vo.StudentWithdrawVo;
+import com.education.timetable.model.vo.page;
 
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 public interface StudentService {
 
+  /**
+   * 创建学生信息
+   * @param studentCreateVo
+   * */
   StudentVo createStudent (StudentCreateVo studentCreateVo);
 
-  StudentVo getOne(String studentId);
+  /**
+   * 根据学生id取学生信息
+   * @param studentId
+   * */
+  StudentVo getOne(Long studentId);
 
+  /**
+   * 获取全部学生信息
+   * */
   List<StudentVo> getAll();
 
-  List<StudentVo> getBy(Map<String, Object> params);
+  /**
+   * 分页查找
+   * */
+  page.PagerResult<StudentVo> query(Integer offset, Integer limit);
 
-  boolean deleteOne(String studentId);
+  /**
+   * 根据学生id删除学生信息
+   * @param studentId
+   * */
+  Boolean deleteOne(Long studentId);
 
-  StudentVo updateOne(StudentUpdateVo studentUpdateVo);
+  /**
+   * 批量删除
+   * @param studentIds
+   * */
+  Boolean deleteByIds(List<Long> studentIds);
 
-  StudentRegisterVo register(StudentRegisterVo studentRegisterVo);
+  /**
+   * 更新学生信息
+   * @param studentId
+   * @param studentUpdateVo
+   * */
+  StudentVo updateOne(Long studentId,StudentUpdateVo studentUpdateVo);
 
-  StudentWithdrawVo withdraw(StudentWithdrawVo studentWithdrawVo);
+  /**
+   * 学生报名
+   * @param studentId
+   * @param courseId
+   * */
+  StudentRegisterVo register(Long studentId, UUID courseId);
+
+  /**
+   *  学生退课
+   * @param studentId
+   * @param courseId
+   * */
+  StudentWithdrawVo withdraw(Long studentId, UUID courseId);
 
 }
