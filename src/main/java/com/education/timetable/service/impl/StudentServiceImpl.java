@@ -84,6 +84,7 @@ public class StudentServiceImpl implements StudentService {
   public StudentVo updateOne(Long studentId,StudentUpdateVo studentUpdateVo) {
     StudentPo studentPo = studentRepository.getOne(studentId);
     toStudentPo(studentPo, studentUpdateVo);
+    studentRepository.save(studentPo);
     return toStudentVo(studentPo);
   }
 

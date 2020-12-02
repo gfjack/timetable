@@ -5,9 +5,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,6 +24,7 @@ public class StudentPo extends BasePo {
 
   @ApiModelProperty("学生id")
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long studentId;
 
   @ApiModelProperty("学生信息")

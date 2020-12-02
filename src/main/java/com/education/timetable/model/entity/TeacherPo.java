@@ -9,6 +9,8 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.List;
@@ -24,6 +26,7 @@ public class TeacherPo extends BasePo {
 
   @ApiModelProperty("教师id")
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long teacherId;
 
   @ApiModelProperty("教师姓名")
