@@ -3,6 +3,7 @@ package com.education.timetable.utils;
 import com.education.timetable.exception.TimeTableException;
 import lombok.extern.slf4j.Slf4j;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,6 +14,13 @@ public class DateUtils {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return cal.get(Calendar.YEAR);
+    }
+
+
+    public static String getCurrentDate(){
+        Date date = new Date();
+        SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyMMdd");
+        return simpleFormatter.format(date);
     }
 
     public static void validateTime(Date startTime, Date endTime) {
