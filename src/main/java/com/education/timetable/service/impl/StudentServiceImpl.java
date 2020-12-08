@@ -1,5 +1,6 @@
 package com.education.timetable.service.impl;
 
+import com.education.timetable.config.StringResources;
 import com.education.timetable.converter.StudentConverter;
 import com.education.timetable.exception.TimeTableException;
 import com.education.timetable.model.entity.CoursePo;
@@ -22,18 +23,16 @@ import static com.education.timetable.converter.StudentConverter.*;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-  @Resource
-   private StudentRepository studentRepository;
+  @Resource private StudentRepository studentRepository;
 
-  @Resource
-  private CourseRepository courseRepository;
+  @Resource private CourseRepository courseRepository;
 
   @Override
   public StudentVo createStudent(StudentCreateVo studentCreateVo) {
     StudentPo studentPo = toStudentPo(studentCreateVo);
     try {
       studentRepository.save(studentPo);
-    } catch (Exception e){
+    } catch (Exception e) {
       log.error(e.getMessage());
     }
     return StudentConverter.toStudentVo(studentPo);
@@ -54,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
   @Override
   public page.PagerResult<StudentVo> query(Integer offset, Integer limit) {
     page.PagerResult<StudentVo> studentVoPagerResult = new page.PagerResult<>();
-    List<StudentPo> studentPos = studentRepository.findPage(offset,limit);
+    List<StudentPo> studentPos = studentRepository.findPage(offset, limit);
     studentVoPagerResult.setTotal(studentPos.size());
     studentVoPagerResult.setItems(toStudentVos(studentPos));
 
@@ -66,22 +65,23 @@ public class StudentServiceImpl implements StudentService {
     try {
       studentRepository.deleteById(studentId);
       return true;
-    }catch (Exception e){
+    } catch (Exception e) {
       log.error(e.getMessage());
       return false;
     }
   }
 
   @Override
-  public Boolean deleteByIds(List<Long> studentIds){
+  public Boolean deleteByIds(List<Long> studentIds) {
     Boolean res = true;
-    for (Long studentId:studentIds)
+    for (Long studentId : studentIds) {
       res = deleteOne(studentId) && res;
+    }
     return res;
   }
 
   @Override
-  public StudentVo updateOne(Long studentId,StudentUpdateVo studentUpdateVo) {
+  public StudentVo updateOne(Long studentId, StudentUpdateVo studentUpdateVo) {
     StudentPo studentPo = studentRepository.getOne(studentId);
     toStudentPo(studentPo, studentUpdateVo);
     studentRepository.save(studentPo);
@@ -99,17 +99,17 @@ public class StudentServiceImpl implements StudentService {
       studentRegisterVo.setEndTime(coursePo.getEndTime());
       studentRegisterVo.setStartTime(coursePo.getStartTime());
       studentRegisterVo.setStudentId(studentId);
-    } catch (Exception e){
+    } catch (Exception e) {
       log.error(e.getMessage());
     }
     List<Long> registeredStudent = coursePo.getRegisteredStudents();
-    if(!registeredStudent.contains(studentId)){
+    if (!registeredStudent.contains(studentId)) {
       registeredStudent.add(studentId);
       coursePo.setRegisteredStudents(registeredStudent);
       courseRepository.save(coursePo);
-    }else{
+    } else {
       studentRegisterVo.setSuccess(false);
-      throw new TimeTableException(HttpStatus.BAD_REQUEST,"already registered");
+      throw new TimeTableException(HttpStatus.BAD_REQUEST, StringResources.getString("STUDENT.ALREADY.REGISTERED"));
     }
     studentRegisterVo.setSuccess(true);
     return studentRegisterVo;
@@ -125,15 +125,15 @@ public class StudentServiceImpl implements StudentService {
       studentWithdrawVo.setCourseId(coursePo.getCourseId());
       studentWithdrawVo.setCourseName(coursePo.getCourseName());
       studentWithdrawVo.setStudentId(studentId);
-    } catch (Exception e){
+    } catch (Exception e) {
       log.error(e.getMessage());
     }
 
     List<Long> registeredStudent = coursePo.getRegisteredStudents();
-    if(!registeredStudent.contains(studentWithdrawVo.getStudentId())){
+    if (!registeredStudent.contains(studentWithdrawVo.getStudentId())) {
       studentWithdrawVo.setSuccess(false);
-      throw new TimeTableException(HttpStatus.BAD_REQUEST,"student not registered yet");
-    }else{
+      throw new TimeTableException(HttpStatus.BAD_REQUEST, StringResources.getString("STUDENT.NOT.REGISTER"));
+    } else {
       registeredStudent.remove(studentWithdrawVo.getStudentId());
       coursePo.setRegisteredStudents(registeredStudent);
       courseRepository.save(coursePo);

@@ -1,5 +1,6 @@
 package com.education.timetable.exception.courseExceptions;
 
+import com.education.timetable.config.StringResources;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -12,11 +13,6 @@ public class CourseFailToDeleteException extends ResponseStatusException {
     }
 
     public static String getMessage(UUID courseId, String message) {
-        return String.format("FAILED TO DELETE COURSE: %s, REASON: %s", courseId, message);
+        return String.format(StringResources.getString("FAILED.TO.DELETE.COURSE"), courseId, message);
     }
-
-    public static String getMessage(String message) {
-        return String.format("FAILED TO DELETE COURSE, REASON: %s", message);
-    }
-
 }

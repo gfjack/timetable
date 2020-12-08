@@ -1,5 +1,6 @@
 package com.education.timetable.utils;
 
+import com.education.timetable.config.StringResources;
 import com.education.timetable.exception.TimeTableException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,10 +26,10 @@ public class DateUtils {
 
     public static void validateTime(Date startTime, Date endTime) {
         if (startTime == null || endTime == null) {
-            throw new TimeTableException("begin time or end time cannot be null");
+            throw new TimeTableException(StringResources.getString("BEGIN.TIME.OR.END.TIME.NOT.NULL"));
         }
         if (startTime.after(endTime)) {
-            throw new TimeTableException("start time must be before end time");
+            throw new TimeTableException(StringResources.getString("BEGIN.TIME.MUST.BEFORE.END.TIME"));
         }
     }
 

@@ -1,5 +1,6 @@
 package com.education.timetable.exception.courseExceptions;
 
+import com.education.timetable.config.StringResources;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -16,11 +17,11 @@ public class CourseException extends ResponseStatusException {
     }
 
     public static String getMessage(String message) {
-        return String.format("CANNOT CREATE COURSE, REASON: %s", message);
+        return String.format(StringResources.getString("CANNOT.CREATE.COURSE"), message);
     }
 
     public static String getMessage(String message, UUID courseId) {
-        return String.format("CANNOT UPDATE COURSE: %s, REASON: %s", courseId.toString(), message);
+        return String.format(StringResources.getString("CANNOT.UPDATE.COURSE"), courseId.toString(), message);
     }
 
 }

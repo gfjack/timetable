@@ -1,5 +1,6 @@
 package com.education.timetable.exception.courseExceptions;
 
+import com.education.timetable.config.StringResources;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,6 +28,6 @@ public class CourseNotFoundException extends ResponseStatusException {
     }
 
     public static String getMessage(UUID courseId) {
-        return String.format("COURSE NOT FOUND: %s, REASON: %s", courseId.toString(), "NO SUCH COURSE");
+        return String.format(StringResources.getString("COURSE.NOT.FOUND"), courseId.toString());
     }
 }
