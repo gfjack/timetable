@@ -1,6 +1,7 @@
 package com.education.timetable.controller;
 
 import com.education.timetable.api.CourseApi;
+import com.education.timetable.config.annotions.AdminOnly;
 import com.education.timetable.constants.enums.Week;
 import com.education.timetable.model.vo.CourseCreateVo;
 import com.education.timetable.model.vo.CourseSearchVo;
@@ -74,6 +75,7 @@ public class CourseController implements CourseApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("创建课程")
   @RequestMapping(value = "/v1/courses", method = RequestMethod.POST)
   public CourseVo create(@ApiParam("课程创建vo") @RequestBody CourseCreateVo courseCreateVo) {
@@ -81,6 +83,7 @@ public class CourseController implements CourseApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("删除单个课程")
   @RequestMapping(value = "/v1/courses/{course_id}", method = RequestMethod.DELETE)
   public void delete(@ApiParam("课程id") @PathVariable("course_id") UUID courseId) {
@@ -88,13 +91,15 @@ public class CourseController implements CourseApi {
   }
 
   @Override
-  @ApiOperation("批量课程")
+  @AdminOnly
+  @ApiOperation("批量删除课程")
   @RequestMapping(value = "/v1/courses/action/delete", method = RequestMethod.DELETE)
   public void delete(@ApiParam("课程id列表") @RequestBody List<UUID> courseIds) {
     courseService.delete(courseIds);
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("更新单个课程")
   @RequestMapping(value = "/v1/courses/{course_id}", method = RequestMethod.PUT)
   public CourseVo update(

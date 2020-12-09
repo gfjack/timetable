@@ -1,6 +1,7 @@
 package com.education.timetable.controller;
 
 import com.education.timetable.api.TeacherApi;
+import com.education.timetable.config.annotions.AdminOnly;
 import com.education.timetable.model.vo.TeacherCreateVo;
 import com.education.timetable.model.vo.TeacherUpdateVo;
 import com.education.timetable.model.vo.TeacherVo;
@@ -26,6 +27,7 @@ public class TeacherController implements TeacherApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("创建老师")
   @RequestMapping(value = "/v1/teachers", method = RequestMethod.POST)
   public TeacherVo create(@ApiParam("创建老师vo") @RequestBody TeacherCreateVo teacherCreateVo) {
@@ -63,16 +65,19 @@ public class TeacherController implements TeacherApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("删除单个老师")
   @RequestMapping(value = "/v1/teachers/{teacher_id}", method = RequestMethod.DELETE)
   public void delete(@ApiParam("老师id") @PathVariable("teacher_id") Long teacherId) {}
 
   @Override
+  @AdminOnly
   @ApiOperation("批量删除老师")
   @RequestMapping(value = "/v1/teachers/actions/delete", method = RequestMethod.DELETE)
   public void delete(@ApiParam("老师id列表") @RequestBody List<Long> teacherIds) {}
 
   @Override
+  @AdminOnly
   @ApiOperation("更新单个老师")
   @RequestMapping(value = "/v1/teachers/{teacher_id}/actions/update", method = RequestMethod.PUT)
   public TeacherVo update(

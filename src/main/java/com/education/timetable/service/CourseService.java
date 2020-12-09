@@ -2,13 +2,11 @@ package com.education.timetable.service;
 
 import com.education.timetable.constants.enums.Week;
 import com.education.timetable.model.vo.*;
-import org.springframework.cache.annotation.CacheConfig;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@CacheConfig(cacheNames = "cache.getAll")
 public interface CourseService {
 
 	/**

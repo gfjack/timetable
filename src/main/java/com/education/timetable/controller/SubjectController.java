@@ -1,6 +1,7 @@
 package com.education.timetable.controller;
 
 import com.education.timetable.api.SubjectApi;
+import com.education.timetable.config.annotions.AdminOnly;
 import com.education.timetable.model.vo.SubjectCreateVo;
 import com.education.timetable.model.vo.SubjectUpdateVo;
 import com.education.timetable.model.vo.SubjectVo;
@@ -26,6 +27,7 @@ public class SubjectController implements SubjectApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("获取全部学科")
   @RequestMapping(value = "/v1/subjects", method = RequestMethod.GET)
   public List<SubjectVo> getAll() {
@@ -41,6 +43,7 @@ public class SubjectController implements SubjectApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("创建学科")
   @RequestMapping(value = "/v1/subjects", method = RequestMethod.POST)
   public SubjectVo create(@ApiParam("创建学科参数") @RequestBody SubjectCreateVo subjectCreateVo) {
@@ -55,16 +58,19 @@ public class SubjectController implements SubjectApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("删除单个学科")
   @RequestMapping(value = "/v1/subjects/{subject_id}", method = RequestMethod.DELETE)
   public void delete(@ApiParam("学生id") @PathVariable("subject_id") UUID subjectId) {}
 
   @Override
+  @AdminOnly
   @ApiOperation("批量删除学科")
   @RequestMapping(value = "/v1/subjects/actions/delete", method = RequestMethod.DELETE)
   public void delete(@ApiParam("学生id列表") @RequestBody List<Long> studentIds) {}
 
   @Override
+  @AdminOnly
   @ApiOperation("更新单个学科")
   @RequestMapping(value = "/v1/subjects/{subject_id}/actions/update", method = RequestMethod.PUT)
   public SubjectVo update(

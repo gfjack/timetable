@@ -1,6 +1,7 @@
 package com.education.timetable.controller;
 
 import com.education.timetable.api.StudentApi;
+import com.education.timetable.config.annotions.AdminOnly;
 import com.education.timetable.model.vo.*;
 import com.education.timetable.model.vo.page.PagerResult;
 import com.education.timetable.service.StudentService;
@@ -10,7 +11,6 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +23,7 @@ public class StudentController implements StudentApi {
   StudentService studentService;
 
   @Override
+  @AdminOnly
   @ApiOperation("创建学生")
   @RequestMapping(value = "/v1/students", method = RequestMethod.POST)
   public StudentVo create(@ApiParam("创建学生参数") @RequestBody StudentCreateVo studentCreateVo) {
@@ -37,6 +38,7 @@ public class StudentController implements StudentApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("获取全部学生")
   @RequestMapping(value = "/v1/students", method = RequestMethod.GET)
   public List<StudentVo> getAll() {
@@ -52,6 +54,7 @@ public class StudentController implements StudentApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("删除单个学生")
   @RequestMapping(value = "/v1/students/{student_id}", method = RequestMethod.DELETE)
   public void delete(@ApiParam("学生id") @PathVariable("student_id") Long studentId) {
@@ -59,6 +62,7 @@ public class StudentController implements StudentApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("批量删除学生")
   @RequestMapping(value = "/v1/students/actions/delete", method = RequestMethod.DELETE)
   public void delete(@ApiParam("学生id列表") @RequestBody List<Long> studentIds) {
@@ -66,6 +70,7 @@ public class StudentController implements StudentApi {
   }
 
   @Override
+  @AdminOnly
   @ApiOperation("更新单个学生")
   @RequestMapping(value = "/v1/students/{student_id}/actions/update", method = RequestMethod.PUT)
   public StudentVo update(

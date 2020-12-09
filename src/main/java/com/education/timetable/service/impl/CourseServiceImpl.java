@@ -12,8 +12,6 @@ import com.education.timetable.repository.CourseRepository;
 import com.education.timetable.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +41,6 @@ public class CourseServiceImpl implements CourseService {
   }
 
   @Override
-  @Cacheable(cacheNames = "courseGet", key = "#courseId")
   public CourseVo get(UUID courseId) {
     return toCourseVo(load(courseId));
   }
@@ -101,7 +98,6 @@ public class CourseServiceImpl implements CourseService {
   }
 
   @Override
-  @CacheEvict(cacheNames = "courseGet", key = "#courseId")
   public void delete(UUID courseId) {
     try {
       load(courseId);
