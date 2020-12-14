@@ -8,11 +8,8 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +19,7 @@ import java.util.UUID;
 @Table(name = "t_teacher")
 @TypeDef(name = "json", typeClass = JsonStringType.class)
 @Data
-public class TeacherPo extends BasePo {
+public class TeacherPo extends BasePo implements Serializable {
 
   @ApiModelProperty("教师id")
   @Id

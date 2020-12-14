@@ -4,9 +4,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
 @ApiModel("返回学生vo")
-public class StudentVo {
+public class StudentVo implements Serializable {
 
   @ApiModelProperty("学生id")
   private Long studentId;

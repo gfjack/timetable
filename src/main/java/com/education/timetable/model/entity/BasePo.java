@@ -8,12 +8,13 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @MappedSuperclass
 @ApiModel(description = "PO基类")
-public abstract class BasePo {
+public abstract class BasePo implements Serializable {
 
   @ApiModelProperty("创建者")
   @Column(name = "create_by")

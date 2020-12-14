@@ -9,6 +9,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
@@ -16,7 +17,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "t_subject")
 @Data
-public class SubjectPo extends BasePo {
+public class SubjectPo extends BasePo implements Serializable {
 
   @ApiModelProperty("学科id")
   @Id

@@ -5,13 +5,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Data
 @ApiModel("课程返回vo")
-public class CourseVo {
+public class CourseVo implements Serializable {
 
   @ApiModelProperty("课程id")
   private UUID courseId;

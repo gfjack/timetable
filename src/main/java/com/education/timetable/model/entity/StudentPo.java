@@ -5,14 +5,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @EqualsAndHashCode(callSuper = true)
 @ApiModel("学生")
@@ -20,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "t_student")
 @TypeDef(name = "json", typeClass = JsonStringType.class)
 @Data
-public class StudentPo extends BasePo {
+public class StudentPo extends BasePo implements Serializable {
 
   @ApiModelProperty("学生id")
   @Id

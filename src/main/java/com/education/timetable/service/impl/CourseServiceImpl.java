@@ -1,5 +1,6 @@
 package com.education.timetable.service.impl;
 
+import com.alicp.jetcache.anno.Cached;
 import com.education.timetable.config.StringResources;
 import com.education.timetable.constants.enums.Week;
 import com.education.timetable.exception.TimeTableException;
@@ -21,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import static com.education.timetable.constants.constants.Constant.CACHE_ONE_HOUR;
 import static com.education.timetable.converter.CourseConverter.*;
 import static com.education.timetable.utils.DateUtils.between;
 import static com.education.timetable.utils.DateUtils.validateTime;
@@ -31,6 +33,7 @@ public class CourseServiceImpl implements CourseService {
 
   @Resource private CourseRepository courseRepository;
 
+  @Cached(name = "courses", expire = CACHE_ONE_HOUR)
   private CoursePo load(UUID courseId) {
     CoursePo coursePo = courseRepository.findByCourseId(courseId);
     if (null == coursePo) {

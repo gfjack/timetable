@@ -4,11 +4,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
 @ApiModel("返回学科vo")
-public class SubjectVo {
+public class SubjectVo implements Serializable {
   @ApiModelProperty("学科id")
   private UUID subjectId;
 

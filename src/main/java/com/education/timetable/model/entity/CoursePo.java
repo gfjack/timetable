@@ -12,6 +12,7 @@ import org.hibernate.annotations.TypeDef;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +23,7 @@ import java.util.UUID;
 @Table(name = "t_course")
 @TypeDef(name = "json", typeClass = JsonStringType.class)
 @Data
-public class CoursePo extends BasePo {
+public class CoursePo extends BasePo implements Serializable {
 
   @ApiModelProperty("课程id")
   @Id
