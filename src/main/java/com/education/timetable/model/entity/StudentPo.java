@@ -20,7 +20,6 @@ public class StudentPo extends BasePo implements Serializable {
 
   @ApiModelProperty("学生id")
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long studentId;
 
   @ApiModelProperty("学生信息")

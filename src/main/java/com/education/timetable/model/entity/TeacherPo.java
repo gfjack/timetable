@@ -23,7 +23,6 @@ public class TeacherPo extends BasePo implements Serializable {
 
   @ApiModelProperty("教师id")
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long teacherId;
 
   @ApiModelProperty("教师姓名")

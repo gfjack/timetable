@@ -4,6 +4,7 @@ import com.education.timetable.model.entity.StudentPo;
 import com.education.timetable.model.vo.StudentCreateVo;
 import com.education.timetable.model.vo.StudentUpdateVo;
 import com.education.timetable.model.vo.StudentVo;
+import com.education.timetable.utils.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class StudentConverter {
 
   public static StudentPo toStudentPo(StudentCreateVo studentVo){
     StudentPo studentPo = new StudentPo();
+    studentPo.setStudentId(IdGenerator.generateStudentId(studentVo.getStudentName(), studentVo.getParentContactInfo()));
     studentPo.setStudentInfo(studentVo.getStudentInfo());
     studentPo.setParentContactInfo(studentVo.getParentContactInfo());
     studentPo.setStudentContactInfo(studentVo.getStudentContactInfo());

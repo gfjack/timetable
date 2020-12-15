@@ -23,7 +23,7 @@ public class IdGenerator {
             number = "0000";
         }
         id.append(name.length());
-        id.append(StringUtils.substring(number, -3));
+        id.append(StringUtils.substring(number, -4));
         // 校区代码
         id.append("1");
         return Long.parseLong(id.toString());
