@@ -10,19 +10,22 @@ import javax.annotation.Resource;
 @Configuration
 public class WebInterceptorConfig extends WebMvcConfigurationSupport {
 
-    @Resource
-    private AuthInterceptor authInterceptor;
+  @Resource private AuthInterceptor authInterceptor;
 
-    @Override
-    protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authInterceptor)
-                .addPathPatterns("/v1/**");
-    }
+  @Override
+  protected void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(authInterceptor).addPathPatterns("/v1/**");
+  }
 
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-    }
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
+    registry
+        .addResourceHandler("/webjars/**")
+        .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    registry
+        .addResourceHandler("/**")
+        .addResourceLocations("classpath:/static/")
+        .addResourceLocations("classpath:/META-INF/resources");
+  }
 }
