@@ -3,7 +3,6 @@ package com.education.timetable.controller;
 import com.education.timetable.api.StudentApi;
 import com.education.timetable.config.annotions.AdminOnly;
 import com.education.timetable.model.vo.*;
-import com.education.timetable.model.vo.page.PagerResult;
 import com.education.timetable.service.StudentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,7 +47,7 @@ public class StudentController implements StudentApi {
   @Override
   @ApiOperation("分页搜索学生")
   @RequestMapping(value = "/v1/students/actions/query", method = RequestMethod.POST)
-  public PagerResult<StudentVo> query(
+  public PageResult<StudentVo> query(
       @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
     return null;
   }

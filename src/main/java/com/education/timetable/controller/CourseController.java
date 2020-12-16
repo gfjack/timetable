@@ -3,11 +3,7 @@ package com.education.timetable.controller;
 import com.education.timetable.api.CourseApi;
 import com.education.timetable.config.annotions.AdminOnly;
 import com.education.timetable.constants.enums.Week;
-import com.education.timetable.model.vo.CourseCreateVo;
-import com.education.timetable.model.vo.CourseSearchVo;
-import com.education.timetable.model.vo.CourseUpdateVo;
-import com.education.timetable.model.vo.CourseVo;
-import com.education.timetable.model.vo.page.PagerResult;
+import com.education.timetable.model.vo.*;
 import com.education.timetable.service.CourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -44,7 +40,7 @@ public class CourseController implements CourseApi {
   @Override
   @ApiOperation("分页获取课程")
   @RequestMapping(value = "/v1/courses/actions/query", method = RequestMethod.POST)
-  public PagerResult<CourseVo> query(
+  public PageResult<CourseVo> query(
       @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
     return courseService.query(offset, limit);
   }

@@ -55,11 +55,11 @@ public class CourseServiceImpl implements CourseService {
   }
 
   @Override
-  public page.PagerResult<CourseVo> query(Integer offset, Integer limit) {
-    page.PagerResult<CourseVo> courseVoPagerResult = new page.PagerResult<>();
+  public PageResult<CourseVo> query(Integer offset, Integer limit) {
+    PageResult<CourseVo> courseVoPagerResult = new PageResult<>();
     List<CoursePo> courses = courseRepository.findPage(offset, limit);
     courseVoPagerResult.setItems(toCourseVos(courses));
-    courseVoPagerResult.setTotal(courses.size());
+    courseVoPagerResult.setCount(courses.size());
     return courseVoPagerResult;
   }
 
@@ -126,11 +126,7 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public CourseVo update(UUID courseId, CourseUpdateVo courseUpdateVo) {
     CoursePo coursePo = load(courseId);
-    coursePo.setCourseName(courseUpdateVo.getCourseName());
-    coursePo.setCourseIntroduction(courseUpdateVo.getCourseIntroduction());
-    coursePo.setStartTime(courseUpdateVo.getStartTime());
-    coursePo.setEndTime(courseUpdateVo.getEndTime());
-    coursePo.setTeacherId(courseUpdateVo.getTeacherId());
+    updateCoursePo(courseUpdateVo, coursePo);
     try {
       courseRepository.save(coursePo);
     } catch (Exception e) {

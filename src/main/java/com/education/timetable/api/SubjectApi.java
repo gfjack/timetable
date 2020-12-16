@@ -1,9 +1,9 @@
 package com.education.timetable.api;
 
+import com.education.timetable.model.vo.PageResult;
 import com.education.timetable.model.vo.SubjectCreateVo;
 import com.education.timetable.model.vo.SubjectUpdateVo;
 import com.education.timetable.model.vo.SubjectVo;
-import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -26,7 +26,7 @@ public interface SubjectApi {
 
   @ApiOperation("分页查询")
   @RequestMapping(value = "/v1/subjects/actions/query", method = RequestMethod.POST)
-  PagerResult<SubjectVo> query(
+  PageResult<SubjectVo> query(
       @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
 
   @ApiOperation("创建学科")

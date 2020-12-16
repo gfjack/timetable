@@ -58,10 +58,10 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  public page.PagerResult<StudentVo> query(Integer offset, Integer limit) {
-    page.PagerResult<StudentVo> studentVoPagerResult = new page.PagerResult<>();
+  public PageResult<StudentVo> query(Integer offset, Integer limit) {
+    PageResult<StudentVo> studentVoPagerResult = new PageResult<>();
     List<StudentPo> studentPos = studentRepository.findPage(offset, limit);
-    studentVoPagerResult.setTotal(studentPos.size());
+    studentVoPagerResult.setCount(studentPos.size());
     studentVoPagerResult.setItems(toStudentVos(studentPos));
 
     return studentVoPagerResult;
@@ -95,7 +95,7 @@ public class StudentServiceImpl implements StudentService {
   @Override
   public StudentVo updateOne(Long studentId, StudentUpdateVo studentUpdateVo) {
     StudentPo studentPo = studentRepository.getOne(studentId);
-    toStudentPo(studentPo, studentUpdateVo);
+    updateStudentPo(studentPo, studentUpdateVo);
     studentRepository.save(studentPo);
     return toStudentVo(studentPo);
   }

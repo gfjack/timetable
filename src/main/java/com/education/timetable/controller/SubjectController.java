@@ -2,10 +2,10 @@ package com.education.timetable.controller;
 
 import com.education.timetable.api.SubjectApi;
 import com.education.timetable.config.annotions.AdminOnly;
+import com.education.timetable.model.vo.PageResult;
 import com.education.timetable.model.vo.SubjectCreateVo;
 import com.education.timetable.model.vo.SubjectUpdateVo;
 import com.education.timetable.model.vo.SubjectVo;
-import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -37,7 +37,7 @@ public class SubjectController implements SubjectApi {
   @Override
   @ApiOperation("分页查询")
   @RequestMapping(value = "/v1/subjects/actions/query", method = RequestMethod.POST)
-  public PagerResult<SubjectVo> query(
+  public PageResult<SubjectVo> query(
       @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
     return null;
   }

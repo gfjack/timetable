@@ -2,6 +2,7 @@ package com.education.timetable.converter;
 
 import com.education.timetable.model.entity.CoursePo;
 import com.education.timetable.model.vo.CourseCreateVo;
+import com.education.timetable.model.vo.CourseUpdateVo;
 import com.education.timetable.model.vo.CourseVo;
 
 import java.util.ArrayList;
@@ -66,4 +67,13 @@ public class CourseConverter {
 
     return coursePo;
   }
+
+  public static void updateCoursePo(CourseUpdateVo target, CoursePo source) {
+    source.setCourseName(target.getCourseName());
+    source.setCourseIntroduction(target.getCourseIntroduction());
+    source.setStartTime(target.getStartTime());
+    source.setEndTime(target.getEndTime());
+    source.setTeacherId(target.getTeacherId());
+  }
+
 }

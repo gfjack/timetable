@@ -1,11 +1,7 @@
 package com.education.timetable.api;
 
 import com.education.timetable.constants.enums.Week;
-import com.education.timetable.model.vo.CourseCreateVo;
-import com.education.timetable.model.vo.CourseSearchVo;
-import com.education.timetable.model.vo.CourseUpdateVo;
-import com.education.timetable.model.vo.CourseVo;
-import com.education.timetable.model.vo.page.PagerResult;
+import com.education.timetable.model.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -29,7 +25,7 @@ public interface CourseApi {
 
   @ApiOperation("分页获取课程")
   @RequestMapping(value = "/v1/courses/actions/query", method = RequestMethod.POST)
-  PagerResult<CourseVo> query(
+  PageResult<CourseVo> query(
       @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
 
   @ApiOperation("根据时间段搜索课程")

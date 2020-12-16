@@ -1,7 +1,6 @@
 package com.education.timetable.api;
 
 import com.education.timetable.model.vo.*;
-import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -28,7 +27,7 @@ public interface StudentApi {
 
   @ApiOperation("分页搜索学生")
   @RequestMapping(value = "/v1/students/actions/query", method = RequestMethod.POST)
-  PagerResult<StudentVo> query(
+  PageResult<StudentVo> query(
       @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit);
 
   //  @ApiOperation("参数搜索学生")

@@ -2,10 +2,10 @@ package com.education.timetable.controller;
 
 import com.education.timetable.api.TeacherApi;
 import com.education.timetable.config.annotions.AdminOnly;
+import com.education.timetable.model.vo.PageResult;
 import com.education.timetable.model.vo.TeacherCreateVo;
 import com.education.timetable.model.vo.TeacherUpdateVo;
 import com.education.timetable.model.vo.TeacherVo;
-import com.education.timetable.model.vo.page.PagerResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -37,7 +37,7 @@ public class TeacherController implements TeacherApi {
   @Override
   @ApiOperation("分页查询")
   @RequestMapping(value = "/v1/teachers/actions/query", method = RequestMethod.POST)
-  public PagerResult<TeacherVo> query(
+  public PageResult<TeacherVo> query(
       @RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit) {
     return null;
   }

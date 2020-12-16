@@ -49,14 +49,12 @@ public class StudentConverter {
 
   }
 
-  public static StudentPo toStudentPo(StudentPo studentPo, StudentUpdateVo studentUpdateVo){
+  public static void updateStudentPo(StudentPo studentPo, StudentUpdateVo studentUpdateVo){
     studentPo.setGradeLevel(studentUpdateVo.getGradeLevel());
     studentPo.setParentContactInfo(studentUpdateVo.getParentContactInfo());
     studentPo.setSchoolName(studentUpdateVo.getSchoolName());
     studentPo.setStudentContactInfo(studentUpdateVo.getStudentContactInfo());
     studentPo.setStudentInfo(studentUpdateVo.getStudentInfo());
-
-    return studentPo;
   }
 
   public static StudentVo toStudentVo(StudentPo studentPo){

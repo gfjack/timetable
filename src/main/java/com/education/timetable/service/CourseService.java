@@ -28,7 +28,7 @@ public interface CourseService {
 	 * @param limit limit
 	 * @return pager
 	 */
-	page.PagerResult<CourseVo> query(Integer offset, Integer limit);
+	PageResult<CourseVo> query(Integer offset, Integer limit);
 
 	/**
 	 * 根据日期和时间段获取课程
