@@ -11,4 +11,6 @@ public interface StudentRepository extends JpaRepository<StudentPo, Long> {
   @Query(value = "SELECT * from t_student LIMIT ?1 ?2", nativeQuery = true)
   List<StudentPo> findPage(Integer offset, Integer limit);
 
+  StudentPo findByStudentId(Long studentId);
+
 }

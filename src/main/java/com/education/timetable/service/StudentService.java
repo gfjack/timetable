@@ -1,11 +1,6 @@
 package com.education.timetable.service;
 
-import com.education.timetable.model.vo.StudentCreateVo;
-import com.education.timetable.model.vo.StudentRegisterVo;
-import com.education.timetable.model.vo.StudentUpdateVo;
-import com.education.timetable.model.vo.StudentVo;
-import com.education.timetable.model.vo.StudentWithdrawVo;
-import com.education.timetable.model.vo.page;
+import com.education.timetable.model.vo.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,13 +33,13 @@ public interface StudentService {
    * 根据学生id删除学生信息
    * @param studentId
    * */
-  Boolean deleteOne(Long studentId);
+  void deleteOne(Long studentId);
 
   /**
    * 批量删除
    * @param studentIds
    * */
-  Boolean deleteByIds(List<Long> studentIds);
+  void deleteByIds(List<Long> studentIds);
 
   /**
    * 更新学生信息

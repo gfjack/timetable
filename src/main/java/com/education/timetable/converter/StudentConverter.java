@@ -1,9 +1,8 @@
 package com.education.timetable.converter;
 
+import com.education.timetable.model.entity.CoursePo;
 import com.education.timetable.model.entity.StudentPo;
-import com.education.timetable.model.vo.StudentCreateVo;
-import com.education.timetable.model.vo.StudentUpdateVo;
-import com.education.timetable.model.vo.StudentVo;
+import com.education.timetable.model.vo.*;
 import com.education.timetable.utils.IdGenerator;
 
 import java.util.ArrayList;
@@ -79,6 +78,29 @@ public class StudentConverter {
       studentVos.add(toStudentVo(studentPo));
     }
     return studentVos;
+  }
+
+  public static StudentRegisterVo toStudentRegisterVo(CoursePo coursePo, Long studentId) {
+    StudentRegisterVo studentRegisterVo = new StudentRegisterVo();
+    studentRegisterVo.setSuccess(false);
+    studentRegisterVo.setCourseId(coursePo.getCourseId());
+    studentRegisterVo.setCourseName(coursePo.getCourseName());
+    studentRegisterVo.setEndTime(coursePo.getEndTime());
+    studentRegisterVo.setStartTime(coursePo.getStartTime());
+    studentRegisterVo.setStudentId(studentId);
+
+    return studentRegisterVo;
+  }
+
+  public static StudentWithdrawVo toStudentWithdrawVo(CoursePo coursePo, Long studentId) {
+    StudentWithdrawVo studentWithdrawVo = new StudentWithdrawVo();
+    studentWithdrawVo.setSuccess(false);
+    studentWithdrawVo.setCourseId(coursePo.getCourseId());
+    studentWithdrawVo.setCourseName(coursePo.getCourseName());
+    studentWithdrawVo.setStudentId(studentId);
+
+    return studentWithdrawVo;
+
   }
 
 

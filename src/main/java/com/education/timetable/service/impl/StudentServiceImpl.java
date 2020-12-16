@@ -10,6 +10,7 @@ import com.education.timetable.repository.CourseRepository;
 import com.education.timetable.repository.StudentRepository;
 import com.education.timetable.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -38,9 +39,15 @@ public class StudentServiceImpl implements StudentService {
     return StudentConverter.toStudentVo(studentPo);
   }
 
+  // todo 如果之后要引入缓存, 最好有一个整体不出现在接口上的加载方法去读取课程达到缓存归一可控性, 类似于load()
+  // todo 业务逻辑处理, 可能出现空指针
   @Override
   public StudentVo getOne(Long studentId) {
-    StudentPo studentPo = studentRepository.getOne(studentId);
+    StudentPo studentPo = studentRepository.findByStudentId(studentId);
+    if (ObjectUtils.isEmpty(studentPo)) {
+      // todo 应该给予业务抛出异常处理
+    }
+
     return toStudentVo(studentPo);
   }
 
@@ -60,24 +67,29 @@ public class StudentServiceImpl implements StudentService {
     return studentVoPagerResult;
   }
 
+  // todo 删除单个如果不存在的情况应该给予异常处理, 一般由服务端控制业务语句, 前端不做业务处理, 前端可直接引用异常信息Unicode编码报错出去
   @Override
-  public Boolean deleteOne(Long studentId) {
+  public void deleteOne(Long studentId) {
     try {
+      // todo 删除一个一般先加载, 或者通过缓存load()加载减小数据库压力
+      getOne(studentId);
       studentRepository.deleteById(studentId);
-      return true;
     } catch (Exception e) {
       log.error(e.getMessage());
-      return false;
+      // todo 应该给予业务抛出异常处理
     }
   }
 
+  // todo 删除多个顺应逻辑直接删除可删除的，其他给予业务逻辑异常处理
   @Override
-  public Boolean deleteByIds(List<Long> studentIds) {
-    Boolean res = true;
+  public void deleteByIds(List<Long> studentIds) {
     for (Long studentId : studentIds) {
-      res = deleteOne(studentId) && res;
+      try{
+        deleteOne(studentId);
+      } catch (Exception e) {
+        // todo 应该给予业务异常处理, 但不应该抛出异常
+      }
     }
-    return res;
   }
 
   @Override
@@ -91,17 +103,9 @@ public class StudentServiceImpl implements StudentService {
   @Override
   public StudentRegisterVo register(Long studentId, UUID courseId) {
     CoursePo coursePo = courseRepository.getOne(courseId);
-    StudentRegisterVo studentRegisterVo = new StudentRegisterVo();
-    try {
-      studentRegisterVo.setSuccess(false);
-      studentRegisterVo.setCourseId(coursePo.getCourseId());
-      studentRegisterVo.setCourseName(coursePo.getCourseName());
-      studentRegisterVo.setEndTime(coursePo.getEndTime());
-      studentRegisterVo.setStartTime(coursePo.getStartTime());
-      studentRegisterVo.setStudentId(studentId);
-    } catch (Exception e) {
-      log.error(e.getMessage());
-    }
+    StudentRegisterVo studentRegisterVo = toStudentRegisterVo(coursePo, studentId);
+
+    // 检测是否已经注册
     List<Long> registeredStudent = coursePo.getRegisteredStudents();
     if (!registeredStudent.contains(studentId)) {
       registeredStudent.add(studentId);
@@ -118,17 +122,9 @@ public class StudentServiceImpl implements StudentService {
   @Override
   public StudentWithdrawVo withdraw(Long studentId, UUID courseId) {
     CoursePo coursePo = courseRepository.getOne(courseId);
+    StudentWithdrawVo studentWithdrawVo = toStudentWithdrawVo(coursePo, studentId);
 
-    StudentWithdrawVo studentWithdrawVo = new StudentWithdrawVo();
-    try {
-      studentWithdrawVo.setSuccess(false);
-      studentWithdrawVo.setCourseId(coursePo.getCourseId());
-      studentWithdrawVo.setCourseName(coursePo.getCourseName());
-      studentWithdrawVo.setStudentId(studentId);
-    } catch (Exception e) {
-      log.error(e.getMessage());
-    }
-
+    // 检测是否已经注册
     List<Long> registeredStudent = coursePo.getRegisteredStudents();
     if (!registeredStudent.contains(studentWithdrawVo.getStudentId())) {
       studentWithdrawVo.setSuccess(false);
