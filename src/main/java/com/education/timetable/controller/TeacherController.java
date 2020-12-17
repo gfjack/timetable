@@ -2,15 +2,14 @@ package com.education.timetable.controller;
 
 import com.education.timetable.api.TeacherApi;
 import com.education.timetable.config.annotions.AdminOnly;
-import com.education.timetable.model.vo.PageResult;
-import com.education.timetable.model.vo.TeacherCreateVo;
-import com.education.timetable.model.vo.TeacherUpdateVo;
-import com.education.timetable.model.vo.TeacherVo;
+import com.education.timetable.model.vo.*;
+import com.education.timetable.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +17,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("")
 public class TeacherController implements TeacherApi {
+
+  @Resource
+  private TeacherService teacherService;
 
   @Override
   @ApiOperation("获取单个老师")
@@ -61,7 +63,7 @@ public class TeacherController implements TeacherApi {
   @ApiOperation("获取多个老师")
   @RequestMapping(value = "/v1/teachers", method = RequestMethod.GET)
   public List<TeacherVo> getAll() {
-    return null;
+    return teacherService.getAll();
   }
 
   @Override
