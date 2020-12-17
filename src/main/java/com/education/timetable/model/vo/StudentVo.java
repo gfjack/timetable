@@ -33,5 +33,4 @@ public class StudentVo implements Serializable {
 
   @ApiModelProperty("学校名称")
   private String schoolName;
-
 }

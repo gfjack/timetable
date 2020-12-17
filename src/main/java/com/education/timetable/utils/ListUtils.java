@@ -65,6 +65,7 @@ public class ListUtils {
 
   /**
    * paging list, index must begin from 1
+   *
    * @param sourceList 最开始的list
    * @param page 总页数
    * @param pageSize 每页大小
@@ -73,12 +74,11 @@ public class ListUtils {
    */
   public static <T> List<T> getPage(List<T> sourceList, int page, int pageSize) {
     int fromIndex = (page - 1) * pageSize;
-    if(sourceList == null || sourceList.size() < fromIndex){
+    if (sourceList == null || sourceList.size() < fromIndex) {
       return Collections.emptyList();
     }
 
     // toIndex exclusive
     return sourceList.subList(fromIndex, Math.min(fromIndex + pageSize, sourceList.size()));
   }
-
 }

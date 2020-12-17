@@ -9,8 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 public class ThreadPoolTaskExecutorUtils {
 
-  public static void run(@NonNull Runnable runnable,
-      ThreadPoolTaskExecutor threadPoolTaskExecutor) {
+  public static void run(
+      @NonNull Runnable runnable, ThreadPoolTaskExecutor threadPoolTaskExecutor) {
     threadPoolTaskExecutor.execute(runnable);
   }
 
@@ -44,13 +44,14 @@ public class ThreadPoolTaskExecutorUtils {
     return threadPoolTaskExecutor;
   }
 
-  public static void getActiveCountPeriodically(ThreadPoolTaskExecutor threadPoolTaskExecutor, Integer period) {
+  public static void getActiveCountPeriodically(
+      ThreadPoolTaskExecutor threadPoolTaskExecutor, Integer period) {
     while (threadPoolTaskExecutor.getActiveCount() > 0) {
-      Runnable helloRunnable = () -> System.out.println("线程池存活数量: " + threadPoolTaskExecutor.getActiveCount());
+      Runnable helloRunnable =
+          () -> System.out.println("线程池存活数量: " + threadPoolTaskExecutor.getActiveCount());
 
       ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
       executor.scheduleAtFixedRate(helloRunnable, 0, period, TimeUnit.SECONDS);
     }
-
   }
 }

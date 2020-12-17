@@ -12,5 +12,4 @@ public interface StudentRepository extends JpaRepository<StudentPo, Long> {
   List<StudentPo> findPage(Integer offset, Integer limit);
 
   StudentPo findByStudentId(Long studentId);
-
 }

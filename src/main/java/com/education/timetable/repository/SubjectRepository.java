@@ -7,6 +7,5 @@ import java.util.UUID;
 
 public interface SubjectRepository extends JpaRepository<SubjectPo, UUID> {
 
-    SubjectPo findBySubjectId(UUID subjectId);
-
+  SubjectPo findBySubjectId(UUID subjectId);
 }

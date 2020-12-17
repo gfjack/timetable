@@ -11,22 +11,21 @@ import java.util.UUID;
 @Data
 public class StudentRegisterVo {
 
-	@ApiModelProperty("学生id")
-	private Long studentId;
+  @ApiModelProperty("学生id")
+  private Long studentId;
 
-	@ApiModelProperty("课程id")
-	private UUID courseId;
+  @ApiModelProperty("课程id")
+  private UUID courseId;
 
-	@ApiModelProperty("课程名称")
-	private String courseName;
+  @ApiModelProperty("课程名称")
+  private String courseName;
 
-	@ApiModelProperty("课程开始时间")
-	private Date startTime;
+  @ApiModelProperty("课程开始时间")
+  private Date startTime;
 
-	@ApiModelProperty("课程结束时间")
-	private Date endTime;
+  @ApiModelProperty("课程结束时间")
+  private Date endTime;
 
-	@ApiModelProperty("是否报名成功")
-	private boolean isSuccess;
-
+  @ApiModelProperty("是否报名成功")
+  private boolean isSuccess;
 }

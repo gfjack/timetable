@@ -75,5 +75,4 @@ public class CourseConverter {
     source.setEndTime(target.getEndTime());
     source.setTeacherId(target.getTeacherId());
   }
-
 }

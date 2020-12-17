@@ -20,5 +20,4 @@ public class ThreadPoolConfig {
   public ExecutorService taskExecutor() {
     return Executors.newFixedThreadPool(MAX_POOL_SIZE);
   }
-
 }

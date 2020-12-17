@@ -40,5 +40,4 @@ public class TimetableApplication extends SpringBootServletInitializer {
     pool.setQueueCapacity(20000);
     return pool;
   }
-
 }

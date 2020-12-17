@@ -11,19 +11,18 @@ import java.util.UUID;
 @ApiModel("创建老师vo")
 public class TeacherCreateVo {
 
-	@ApiModelProperty("教师姓名")
-	private String teacherName;
+  @ApiModelProperty("教师姓名")
+  private String teacherName;
 
-	@ApiModelProperty("联系方式")
-	private String contact;
+  @ApiModelProperty("联系方式")
+  private String contact;
 
-	@ApiModelProperty("老师简介")
-	private String teacherInfo;
+  @ApiModelProperty("老师简介")
+  private String teacherInfo;
 
-	@ApiModelProperty("任教学科")
-	private Long subjectIds;
+  @ApiModelProperty("任教学科")
+  private Long subjectIds;
 
-	@ApiModelProperty("任教课程")
-	private List<UUID> courseIds;
-
+  @ApiModelProperty("任教课程")
+  private List<UUID> courseIds;
 }

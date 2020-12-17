@@ -1,23 +1,15 @@
 package com.education.timetable.constants.enums;
 
-/**
- * 用户角色
- */
+/** 用户角色 */
 public enum UserRole {
 
-  /**
-   * 学生
-   */
+  /** 学生 */
   STUDENT(1),
 
-  /**
-   * 老师
-   */
+  /** 老师 */
   TEACHER(2),
 
-  /**
-   * 家长
-   */
+  /** 家长 */
   GUARDIAN(3);
 
   public Integer code;

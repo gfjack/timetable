@@ -2,41 +2,26 @@ package com.education.timetable.constants.enums;
 
 public enum Week {
 
-  /**
-   * 周一
-   */
+  /** 周一 */
   MONDAY(0, "周一"),
 
-  /**
-   * 周二
-   */
+  /** 周二 */
   TUESDAY(1, "周二"),
 
-  /**
-   * 周三
-   */
+  /** 周三 */
   WEDNESDAY(2, "周三"),
 
-  /**
-   * 周四
-   */
+  /** 周四 */
   THURSDAY(3, "周四"),
 
-  /**
-   * 周五
-   */
+  /** 周五 */
   FRIDAY(4, "周五"),
 
-  /**
-   * 周六
-   */
+  /** 周六 */
   SATURDAY(5, "周六"),
 
-  /**
-   * 周日
-   */
+  /** 周日 */
   SUNDAY(6, "周日");
-
 
   private final Integer code;
   private final String name;

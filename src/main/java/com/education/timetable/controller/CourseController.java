@@ -20,8 +20,7 @@ import java.util.UUID;
 @RequestMapping("")
 public class CourseController implements CourseApi {
 
-  @Resource
-  private CourseService courseService;
+  @Resource private CourseService courseService;
 
   @Override
   @ApiOperation("获取单个课程")

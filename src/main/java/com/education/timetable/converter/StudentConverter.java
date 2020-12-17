@@ -10,7 +10,7 @@ import java.util.List;
 
 public class StudentConverter {
 
-  public static StudentPo toStudentPo(StudentVo studentVo){
+  public static StudentPo toStudentPo(StudentVo studentVo) {
     StudentPo studentPo = new StudentPo();
     studentPo.setStudentId(studentVo.getStudentId());
     studentPo.setStudentInfo(studentVo.getStudentInfo());
@@ -21,10 +21,9 @@ public class StudentConverter {
     studentPo.setGradeLevel(studentVo.getGradeLevel());
     studentPo.setSchoolName(studentVo.getSchoolName());
     return studentPo;
-
   }
 
-  public static StudentPo toStudentPo(StudentUpdateVo studentVo){
+  public static StudentPo toStudentPo(StudentUpdateVo studentVo) {
     StudentPo studentPo = new StudentPo();
     studentPo.setStudentInfo(studentVo.getStudentInfo());
     studentPo.setParentContactInfo(studentVo.getParentContactInfo());
@@ -32,12 +31,13 @@ public class StudentConverter {
     studentPo.setGradeLevel(studentVo.getGradeLevel());
     studentPo.setSchoolName(studentVo.getSchoolName());
     return studentPo;
-
   }
 
-  public static StudentPo toStudentPo(StudentCreateVo studentVo){
+  public static StudentPo toStudentPo(StudentCreateVo studentVo) {
     StudentPo studentPo = new StudentPo();
-    studentPo.setStudentId(IdGenerator.generateStudentId(studentVo.getStudentName(), studentVo.getParentContactInfo()));
+    studentPo.setStudentId(
+        IdGenerator.generateStudentId(
+            studentVo.getStudentName(), studentVo.getParentContactInfo()));
     studentPo.setStudentInfo(studentVo.getStudentInfo());
     studentPo.setParentContactInfo(studentVo.getParentContactInfo());
     studentPo.setStudentContactInfo(studentVo.getStudentContactInfo());
@@ -46,10 +46,9 @@ public class StudentConverter {
     studentPo.setGradeLevel(studentVo.getGradeLevel());
     studentPo.setSchoolName(studentVo.getSchoolName());
     return studentPo;
-
   }
 
-  public static void updateStudentPo(StudentPo studentPo, StudentUpdateVo studentUpdateVo){
+  public static void updateStudentPo(StudentPo studentPo, StudentUpdateVo studentUpdateVo) {
     studentPo.setGradeLevel(studentUpdateVo.getGradeLevel());
     studentPo.setParentContactInfo(studentUpdateVo.getParentContactInfo());
     studentPo.setSchoolName(studentUpdateVo.getSchoolName());
@@ -57,7 +56,7 @@ public class StudentConverter {
     studentPo.setStudentInfo(studentUpdateVo.getStudentInfo());
   }
 
-  public static StudentVo toStudentVo(StudentPo studentPo){
+  public static StudentVo toStudentVo(StudentPo studentPo) {
     StudentVo studentVo = new StudentVo();
     studentVo.setGradeLevel(studentPo.getGradeLevel());
     studentVo.setParentContactInfo(studentPo.getParentContactInfo());
@@ -70,9 +69,9 @@ public class StudentConverter {
     return studentVo;
   }
 
-  public static List<StudentVo> toStudentVos(List<StudentPo> studentPos){
+  public static List<StudentVo> toStudentVos(List<StudentPo> studentPos) {
     List<StudentVo> studentVos = new ArrayList<>();
-    for (StudentPo studentPo:studentPos) {
+    for (StudentPo studentPo : studentPos) {
       studentVos.add(toStudentVo(studentPo));
     }
     return studentVos;
@@ -98,8 +97,5 @@ public class StudentConverter {
     studentWithdrawVo.setStudentId(studentId);
 
     return studentWithdrawVo;
-
   }
-
-
 }

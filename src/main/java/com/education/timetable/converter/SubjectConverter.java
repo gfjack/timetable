@@ -8,20 +8,19 @@ import java.util.List;
 
 public class SubjectConverter {
 
-    public static SubjectVo toSubjectVo(SubjectPo subjectPo) {
-        SubjectVo subjectVo = new SubjectVo();
-        // todo po/vo 之间转换数据
+  public static SubjectVo toSubjectVo(SubjectPo subjectPo) {
+    SubjectVo subjectVo = new SubjectVo();
+    // todo po/vo 之间转换数据
 
-        return subjectVo;
+    return subjectVo;
+  }
+
+  public static List<SubjectVo> toSubjectVos(List<SubjectPo> subjectPos) {
+    List<SubjectVo> subjectVos = new ArrayList<>();
+    for (SubjectPo subjectPo : subjectPos) {
+      subjectVos.add(toSubjectVo(subjectPo));
     }
 
-    public static List<SubjectVo> toSubjectVos(List<SubjectPo> subjectPos) {
-        List<SubjectVo> subjectVos = new ArrayList<>();
-        for (SubjectPo subjectPo : subjectPos) {
-            subjectVos.add(toSubjectVo(subjectPo));
-        }
-
-        return subjectVos;
-    }
-
+    return subjectVos;
+  }
 }

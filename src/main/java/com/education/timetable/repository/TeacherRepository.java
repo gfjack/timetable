@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TeacherRepository extends JpaRepository<TeacherPo, Long> {
 
-    TeacherPo findByTeacherId(Long teacherId);
+  TeacherPo findByTeacherId(Long teacherId);
 }

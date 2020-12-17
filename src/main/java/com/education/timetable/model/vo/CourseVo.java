@@ -41,5 +41,4 @@ public class CourseVo implements Serializable {
 
   @ApiModelProperty(value = "日期", example = "周日, 周一, 周二")
   private Week day;
-
 }

@@ -10,13 +10,12 @@ import java.util.UUID;
 
 public interface CourseRepository extends JpaRepository<CoursePo, UUID> {
 
-	@Query(value = "SELECT * FROM t_course LIMIT ?1, ?2", nativeQuery = true)
-	List<CoursePo> findPage(Integer offset, Integer limit);
+  @Query(value = "SELECT * FROM t_course LIMIT ?1, ?2", nativeQuery = true)
+  List<CoursePo> findPage(Integer offset, Integer limit);
 
-	List<CoursePo> findAllBySubjectId(UUID subjectId);
+  List<CoursePo> findAllBySubjectId(UUID subjectId);
 
-	List<CoursePo> findAllByDay(Week day);
+  List<CoursePo> findAllByDay(Week day);
 
-	CoursePo findByCourseId(UUID courseId);
-
+  CoursePo findByCourseId(UUID courseId);
 }

@@ -8,20 +8,19 @@ import java.util.List;
 
 public class TeacherConverter {
 
-    public static TeacherVo toTeacherVo(TeacherPo teacherPo) {
-        TeacherVo teacherVo = new TeacherVo();
-        // todo po/vo 之间相互转换
+  public static TeacherVo toTeacherVo(TeacherPo teacherPo) {
+    TeacherVo teacherVo = new TeacherVo();
+    // todo po/vo 之间相互转换
 
-        return teacherVo;
+    return teacherVo;
+  }
+
+  public static List<TeacherVo> toTeacherVos(List<TeacherPo> teacherPos) {
+    List<TeacherVo> teacherVos = new ArrayList<>();
+    for (TeacherPo teacherPo : teacherPos) {
+      teacherVos.add(toTeacherVo(teacherPo));
     }
 
-    public static List<TeacherVo> toTeacherVos(List<TeacherPo> teacherPos) {
-        List<TeacherVo> teacherVos = new ArrayList<>();
-        for (TeacherPo teacherPo : teacherPos) {
-            teacherVos.add(toTeacherVo(teacherPo));
-        }
-
-        return teacherVos;
-    }
-
+    return teacherVos;
+  }
 }

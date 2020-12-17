@@ -84,7 +84,7 @@ public class StudentServiceImpl implements StudentService {
   @Override
   public void deleteByIds(List<Long> studentIds) {
     for (Long studentId : studentIds) {
-      try{
+      try {
         deleteOne(studentId);
       } catch (Exception e) {
         // todo 应该给予业务异常处理, 但不应该抛出异常
@@ -113,7 +113,8 @@ public class StudentServiceImpl implements StudentService {
       courseRepository.save(coursePo);
     } else {
       studentRegisterVo.setSuccess(false);
-      throw new TimeTableException(HttpStatus.BAD_REQUEST, StringResources.getString("STUDENT.ALREADY.REGISTERED"));
+      throw new TimeTableException(
+          HttpStatus.BAD_REQUEST, StringResources.getString("STUDENT.ALREADY.REGISTERED"));
     }
     studentRegisterVo.setSuccess(true);
     return studentRegisterVo;
@@ -128,7 +129,8 @@ public class StudentServiceImpl implements StudentService {
     List<Long> registeredStudent = coursePo.getRegisteredStudents();
     if (!registeredStudent.contains(studentWithdrawVo.getStudentId())) {
       studentWithdrawVo.setSuccess(false);
-      throw new TimeTableException(HttpStatus.BAD_REQUEST, StringResources.getString("STUDENT.NOT.REGISTER"));
+      throw new TimeTableException(
+          HttpStatus.BAD_REQUEST, StringResources.getString("STUDENT.NOT.REGISTER"));
     } else {
       registeredStudent.remove(studentWithdrawVo.getStudentId());
       coursePo.setRegisteredStudents(registeredStudent);

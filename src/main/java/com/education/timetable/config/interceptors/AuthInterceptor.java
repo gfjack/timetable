@@ -18,27 +18,32 @@ import static com.education.timetable.constants.constants.Constant.TEMP_PASSWORD
 @Slf4j
 public class AuthInterceptor implements HandlerInterceptor {
 
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+  @Override
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+      throws Exception {
 
-        String authorization = request.getHeader(AUTHORIZATION);
+    String authorization = request.getHeader(AUTHORIZATION);
 
-        if (!StringUtils.isNumeric(authorization) || !TEMP_PASSWORD.equals(Long.parseLong(authorization))) {
-            response.sendError(HttpStatus.FORBIDDEN.value(), StringResources.getString("INCORRECT.CREDENTIALS"));
-            return false;
-        }
-
-        return true;
+    if (!StringUtils.isNumeric(authorization)
+        || !TEMP_PASSWORD.equals(Long.parseLong(authorization))) {
+      response.sendError(
+          HttpStatus.FORBIDDEN.value(), StringResources.getString("INCORRECT.CREDENTIALS"));
+      return false;
     }
 
+    return true;
+  }
 
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+  @Override
+  public void postHandle(
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Object handler,
+      ModelAndView modelAndView)
+      throws Exception {}
 
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
-    }
+  @Override
+  public void afterCompletion(
+      HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+      throws Exception {}
 }

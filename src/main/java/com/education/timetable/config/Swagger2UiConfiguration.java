@@ -12,24 +12,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class Swagger2UiConfiguration
-{
+public class Swagger2UiConfiguration {
   @Bean
   public Docket createRestApi() {
     return new Docket(DocumentationType.SWAGGER_2)
-            .apiInfo(apiInfo())
-            .select()
-            .apis(RequestHandlerSelectors.basePackage("com.education.timetable.controller"))
-            .paths(PathSelectors.any())
-            .build();
+        .apiInfo(apiInfo())
+        .select()
+        .apis(RequestHandlerSelectors.basePackage("com.education.timetable.controller"))
+        .paths(PathSelectors.any())
+        .build();
   }
 
   private ApiInfo apiInfo() {
     return new ApiInfoBuilder()
-            .title("课程表api文档")
-            .description("简易家长课程表初始版本")
-            .termsOfServiceUrl("")
-            .version("0.0.2")
-            .build();
+        .title("课程表api文档")
+        .description("简易家长课程表初始版本")
+        .termsOfServiceUrl("")
+        .version("0.0.2")
+        .build();
   }
 }

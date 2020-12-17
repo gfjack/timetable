@@ -8,10 +8,9 @@ import lombok.Data;
 @ApiModel("更新学科vo")
 public class SubjectUpdateVo {
 
-	@ApiModelProperty("学科简介")
-	private String subjectIntroduction;
+  @ApiModelProperty("学科简介")
+  private String subjectIntroduction;
 
-	@ApiModelProperty("学科阶段")
-	private Integer sprint;
-
+  @ApiModelProperty("学科阶段")
+  private Integer sprint;
 }

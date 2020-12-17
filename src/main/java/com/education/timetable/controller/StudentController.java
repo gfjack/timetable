@@ -18,8 +18,7 @@ import java.util.UUID;
 @RequestMapping("")
 public class StudentController implements StudentApi {
 
-  @Autowired
-  StudentService studentService;
+  @Autowired StudentService studentService;
 
   @Override
   @AdminOnly
@@ -75,7 +74,7 @@ public class StudentController implements StudentApi {
   public StudentVo update(
       @ApiParam("学生id") @PathVariable("student_id") Long studentId,
       @ApiParam("更新参数") @RequestBody StudentUpdateVo studentUpdateVo) {
-    return studentService.updateOne(studentId,studentUpdateVo);
+    return studentService.updateOne(studentId, studentUpdateVo);
   }
 
   @Override
@@ -86,7 +85,7 @@ public class StudentController implements StudentApi {
   public StudentRegisterVo register(
       @ApiParam("学生id") @PathVariable("student_id") Long studentId,
       @ApiParam("课程id") @PathVariable("course_id") UUID courseId) {
-    return studentService.register(studentId,courseId);
+    return studentService.register(studentId, courseId);
   }
 
   @Override
@@ -97,6 +96,6 @@ public class StudentController implements StudentApi {
   public StudentWithdrawVo withdraw(
       @ApiParam("学生id") @PathVariable("student_id") Long studentId,
       @ApiParam("课程id") @PathVariable("course_id") UUID courseId) {
-    return studentService.withdraw(studentId,courseId);
+    return studentService.withdraw(studentId, courseId);
   }
 }

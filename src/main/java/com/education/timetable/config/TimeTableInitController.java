@@ -29,21 +29,21 @@ public class TimeTableInitController {
     return new ModelAndView("model");
   }
 
-//  @RequestMapping("/error")
-//  public String  handleError(HttpServletRequest request, Model model) {
-//
-//    Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-//    Object errorException = request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
-//    Object errorMessage = request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
-//
-//    model.addAttribute("exception", errorException);
-//    model.addAttribute("message", errorMessage);
-//    model.addAttribute("code", status);
-//    return "error";
-//  }
-//
-//  @Override
-//  public String getErrorPath() {
-//    return "/error";
-//  }
+  //  @RequestMapping("/error")
+  //  public String  handleError(HttpServletRequest request, Model model) {
+  //
+  //    Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+  //    Object errorException = request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
+  //    Object errorMessage = request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
+  //
+  //    model.addAttribute("exception", errorException);
+  //    model.addAttribute("message", errorMessage);
+  //    model.addAttribute("code", status);
+  //    return "error";
+  //  }
+  //
+  //  @Override
+  //  public String getErrorPath() {
+  //    return "/error";
+  //  }
 }
