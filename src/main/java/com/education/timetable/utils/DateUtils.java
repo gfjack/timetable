@@ -3,6 +3,7 @@ package com.education.timetable.utils;
 import com.education.timetable.config.StringResources;
 import com.education.timetable.exception.TimeTableException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,11 +24,19 @@ public class DateUtils {
     return simpleFormatter.format(date);
   }
 
+  /**
+   * 配合业务需要, 需要验证时间是否是整点时间
+   *
+   * @param startTime 开始时间
+   * @param endTime 结束时间
+   */
   public static void validateTime(Date startTime, Date endTime) {
     if (startTime == null || endTime == null) {
       throw new TimeTableException(StringResources.getString("BEGIN.TIME.OR.END.TIME.NOT.NULL"));
     }
-    if (startTime.after(endTime)) {
+    isSharpTime(startTime);
+    isSharpTime(endTime);
+    if (startTime.after(endTime) || startTime.equals(endTime)) {
       throw new TimeTableException(StringResources.getString("BEGIN.TIME.MUST.BEFORE.END.TIME"));
     }
   }
@@ -56,4 +65,17 @@ public class DateUtils {
     }
     return !endTime.after(sourceEndTime);
   }
+
+  public static void isSharpTime(Date date) {
+    SimpleDateFormat formatMinutes = new SimpleDateFormat("mm");
+    SimpleDateFormat formatSeconds = new SimpleDateFormat("ss");
+    String minutes = formatMinutes.format(date);
+    String seconds = formatSeconds.format(date);
+    if (!"00".equals(minutes) || !"00".equals(seconds)) {
+      throw new TimeTableException(
+          HttpStatus.BAD_REQUEST,
+          String.format(StringResources.getString("INCORRECT.SHARP.TIME") + ": %s", date));
+    }
+  }
+
 }

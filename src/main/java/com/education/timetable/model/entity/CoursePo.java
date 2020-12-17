@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -48,7 +49,7 @@ public class CoursePo extends BasePo implements Serializable {
 
   @ApiModelProperty("参与学生")
   @Type(type = "json")
-  private List<Long> registeredStudents;
+  private List<Long> registeredStudents = new ArrayList<>();
 
   @ApiModelProperty("开始时间")
   private Date startTime;
