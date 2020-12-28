@@ -73,7 +73,7 @@ public class DateUtils {
     String seconds = formatSeconds.format(date);
     if (!"00".equals(minutes) || !"00".equals(seconds)) {
       throw new TimeTableException(
-          HttpStatus.BAD_REQUEST,
+          HttpStatus.BAD_REQUEST.value(),
           String.format(StringResources.getString("INCORRECT.SHARP.TIME") + ": %s", date));
     }
   }

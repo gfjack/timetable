@@ -44,7 +44,7 @@ public class AdminOnlyAspect {
     String token = request.getHeader(TOKEN);
     if (!"admin".equalsIgnoreCase(token)) {
       throw new TimeTableException(
-          HttpStatus.FORBIDDEN, StringResources.getString("NOT.ADMIN.USER"));
+          HttpStatus.FORBIDDEN.value(), StringResources.getString("NOT.ADMIN.USER"));
     }
   }
 }

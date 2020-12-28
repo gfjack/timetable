@@ -8,7 +8,9 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
@@ -35,7 +37,7 @@ public class TeacherPo extends BasePo implements Serializable {
   private String teacherInfo;
 
   @ApiModelProperty("任教学科id")
-  private Long subjectIds;
+  private UUID subjectId;
 
   @ApiModelProperty("任教课程")
   @Type(type = "json")

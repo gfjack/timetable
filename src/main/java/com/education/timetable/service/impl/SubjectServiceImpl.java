@@ -1,5 +1,8 @@
 package com.education.timetable.service.impl;
 
+import com.education.timetable.config.StringResources;
+import com.education.timetable.exception.ObjectNotFoundException;
+import com.education.timetable.exception.ServerException;
 import com.education.timetable.model.entity.SubjectPo;
 import com.education.timetable.model.vo.PageResult;
 import com.education.timetable.model.vo.SubjectCreateVo;
@@ -7,6 +10,7 @@ import com.education.timetable.model.vo.SubjectUpdateVo;
 import com.education.timetable.model.vo.SubjectVo;
 import com.education.timetable.repository.SubjectRepository;
 import com.education.timetable.service.SubjectService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +18,26 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.UUID;
 
-import static com.education.timetable.converter.SubjectConverter.toSubjectVo;
-import static com.education.timetable.converter.SubjectConverter.toSubjectVos;
+import static com.education.timetable.converter.SubjectConverter.*;
 
 @Service
+@Slf4j
 public class SubjectServiceImpl implements SubjectService {
 
   @Resource private SubjectRepository subjectRepository;
 
-  // todo 可以引入缓存集中化
-  private SubjectVo load(UUID subjectId) {
+  private SubjectPo load(UUID subjectId) {
     SubjectPo subjectPo = subjectRepository.findBySubjectId(subjectId);
     if (ObjectUtils.isEmpty(subjectPo)) {
-      // todo 抛出业务异常处理
+      throw new ObjectNotFoundException(StringResources.getString("SUBJECT.NOT.FOUND"));
     }
 
-    return toSubjectVo(subjectPo);
+    return subjectPo;
   }
 
   @Override
   public SubjectVo get(UUID subjectId) {
-    return load(subjectId);
+    return toSubjectVo(load(subjectId));
   }
 
   @Override
@@ -58,31 +61,34 @@ public class SubjectServiceImpl implements SubjectService {
     return null;
   }
 
-  // todo 删除单个如果不存在的情况应该给予异常处理, 一般由服务端控制业务语句, 前端不做业务处理, 前端可直接引用异常信息Unicode编码报错出去
   @Override
   public void delete(UUID subjectId) {
     try {
       load(subjectId);
-      subjectRepository.deleteById(subjectId);
+      subjectRepository.delete(subjectId);
+    } catch (ObjectNotFoundException e) {
+      throw new ObjectNotFoundException(StringResources.getString("SUBJECT.NOT.FOUND"));
     } catch (Exception e) {
-      // todo 抛出业务异常处理
+      throw new ServerException(StringResources.getString("FAILED.TO.DELETE.SUBJECT"));
     }
   }
 
-  // todo 删除多个顺应逻辑直接删除可删除的，其他给予业务逻辑异常处理
   @Override
   public void delete(List<UUID> subjectIds) {
     for (UUID subjectId : subjectIds) {
       try {
         delete(subjectId);
       } catch (Exception e) {
-        // todo 不抛出异常, 直接处理业务异常, 流程直接走完
+        log.error(e.getMessage());
       }
     }
   }
 
   @Override
   public SubjectVo update(UUID subjectId, SubjectUpdateVo subjectUpdateVo) {
-    return null;
+    SubjectPo subjectPo = load(subjectId);
+    updateSubjectPo(subjectPo, subjectUpdateVo);
+    subjectRepository.save(subjectPo);
+    return toSubjectVo(subjectPo);
   }
 }

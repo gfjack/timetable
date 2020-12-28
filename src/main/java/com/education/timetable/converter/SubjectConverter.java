@@ -1,6 +1,7 @@
 package com.education.timetable.converter;
 
 import com.education.timetable.model.entity.SubjectPo;
+import com.education.timetable.model.vo.SubjectUpdateVo;
 import com.education.timetable.model.vo.SubjectVo;
 
 import java.util.ArrayList;
@@ -23,4 +24,10 @@ public class SubjectConverter {
 
     return subjectVos;
   }
+
+  public static void updateSubjectPo(SubjectPo resource, SubjectUpdateVo subjectUpdateVo) {
+    resource.setSubjectIntroduction(subjectUpdateVo.getSubjectIntroduction());
+    resource.setSprint(subjectUpdateVo.getSprint());
+  }
+
 }

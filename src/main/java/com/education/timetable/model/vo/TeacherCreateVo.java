@@ -21,7 +21,7 @@ public class TeacherCreateVo {
   private String teacherInfo;
 
   @ApiModelProperty("任教学科")
-  private Long subjectIds;
+  private UUID subjectId;
 
   @ApiModelProperty("任教课程")
   private List<UUID> courseIds;

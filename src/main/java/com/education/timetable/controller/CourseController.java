@@ -23,8 +23,8 @@ public class CourseController implements CourseApi {
   @Resource private CourseService courseService;
 
   @Override
-  @ApiOperation("获取单个课程")
   @RequestMapping(value = "/v1/courses/{course_id}", method = RequestMethod.GET)
+  @ApiOperation("获取单个课程")
   public CourseVo get(@ApiParam("课程id") @PathVariable("course_id") UUID courseId) {
     return courseService.get(courseId);
   }

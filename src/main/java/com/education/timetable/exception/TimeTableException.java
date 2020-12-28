@@ -1,23 +1,62 @@
 package com.education.timetable.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
+import com.education.timetable.exception.exceptionBodyInit.BaseErrorInfoInterface;
 
-public class TimeTableException extends ResponseStatusException {
+public class TimeTableException extends RuntimeException {
 
-  public TimeTableException(HttpStatus status, String message, Throwable throwable) {
-    super(status, message, throwable);
-  }
+    private static final long serivalVersionUID = 1L;
 
-  public TimeTableException(HttpStatus status, String message) {
-    super(status, message);
-  }
+    protected int errorCode;
 
-  public TimeTableException(String message) {
-    super(HttpStatus.MULTI_STATUS, message);
-  }
+    protected String errorMsg;
 
-  public TimeTableException(int rawStatusCode, String reason, Throwable cause) {
-    super(rawStatusCode, reason, cause);
-  }
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public TimeTableException() {
+        super();
+    }
+
+    public TimeTableException(BaseErrorInfoInterface errorInfoInterface) {
+        super(errorInfoInterface.getResultCode().toString());
+        this.errorCode = errorInfoInterface.getResultCode();
+        this.errorMsg = errorInfoInterface.getResultMessage();
+    }
+
+    public TimeTableException(BaseErrorInfoInterface errorInfoInterface, Throwable cause) {
+        super(errorInfoInterface.getResultCode().toString(), cause);
+        this.errorCode = errorInfoInterface.getResultCode();
+        this.errorMsg = errorInfoInterface.getResultMessage();
+    }
+
+    public TimeTableException(String errorMsg) {
+        super(errorMsg);
+        this.errorMsg = errorMsg;
+    }
+
+    public TimeTableException(Integer errorCode, String errorMsg) {
+        super(errorCode.toString());
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+    }
+
+    public TimeTableException(Integer errorCode, String errorMsg, Throwable cause) {
+        super(errorCode.toString(), cause);
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.education.timetable.converter;
 
 import com.education.timetable.model.entity.TeacherPo;
 import com.education.timetable.model.vo.TeacherCreateVo;
+import com.education.timetable.model.vo.TeacherUpdateVo;
 import com.education.timetable.model.vo.TeacherVo;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class TeacherConverter {
         teacherVo.setCourseIds(teacherPo.getCourseIds());
         teacherVo.setTeacherInfo(teacherPo.getTeacherInfo());
         teacherVo.setTeacherName(teacherPo.getTeacherName());
-        teacherVo.setSubjectIds(teacherPo.getSubjectIds());
+        teacherVo.setSubjectId(teacherPo.getSubjectId());
         return teacherVo;
     }
 
@@ -35,8 +36,15 @@ public class TeacherConverter {
         teacherPo.setTeacherName(teacherVo.getTeacherName());
         teacherPo.setContact(teacherVo.getContact());
         teacherPo.setCourseIds(teacherVo.getCourseIds());
-        teacherPo.setSubjectIds(teacherVo.getSubjectIds());
+        teacherPo.setSubjectId(teacherVo.getSubjectId());
         return teacherPo;
+    }
+
+    public static void updateTeacher(TeacherPo teacherPo, TeacherUpdateVo teacherUpdateVo) {
+        teacherPo.setContact(teacherUpdateVo.getContact());
+        teacherPo.setTeacherInfo(teacherUpdateVo.getTeacherInfo());
+        teacherPo.setSubjectId(teacherUpdateVo.getSubjectId());
+        teacherPo.setCourseIds(teacherUpdateVo.getCourseIds());
     }
 
 }
