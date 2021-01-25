@@ -1,6 +1,6 @@
 package com.education.timetable.config.interceptors;
 
-import com.education.timetable.config.StringResources;
+import com.education.timetable.config.SR;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     if (!StringUtils.isNumeric(authorization)
         || !TEMP_PASSWORD.equals(Long.parseLong(authorization))) {
       response.sendError(
-          HttpStatus.FORBIDDEN.value(), StringResources.getString("INCORRECT.CREDENTIALS"));
+          HttpStatus.FORBIDDEN.value(), SR.getString("INCORRECT.CREDENTIALS"));
       return false;
     }
 

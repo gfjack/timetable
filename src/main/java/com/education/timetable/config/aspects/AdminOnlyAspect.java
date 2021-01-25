@@ -1,6 +1,6 @@
 package com.education.timetable.config.aspects;
 
-import com.education.timetable.config.StringResources;
+import com.education.timetable.config.SR;
 import com.education.timetable.config.annotions.AdminOnly;
 import com.education.timetable.exception.TimeTableException;
 import org.aspectj.lang.JoinPoint;
@@ -44,7 +44,7 @@ public class AdminOnlyAspect {
     String token = request.getHeader(TOKEN);
     if (!"admin".equalsIgnoreCase(token)) {
       throw new TimeTableException(
-          HttpStatus.FORBIDDEN.value(), StringResources.getString("NOT.ADMIN.USER"));
+          HttpStatus.FORBIDDEN.value(), SR.getString("NOT.ADMIN.USER"));
     }
   }
 }
