@@ -1,9 +1,17 @@
 package com.education.timetable.config;
 
 import io.swagger.annotations.Api;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 @Api(hidden = true)
 @Controller
@@ -29,21 +37,18 @@ public class TimeTableInitController {
     return new ModelAndView("model");
   }
 
-  //  @RequestMapping("/error")
-  //  public String  handleError(HttpServletRequest request, Model model) {
-  //
-  //    Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-  //    Object errorException = request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
-  //    Object errorMessage = request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
-  //
-  //    model.addAttribute("exception", errorException);
-  //    model.addAttribute("message", errorMessage);
-  //    model.addAttribute("code", status);
-  //    return "error";
-  //  }
-  //
-  //  @Override
-  //  public String getErrorPath() {
-  //    return "/error";
-  //  }
+  @RequestMapping("/hello")
+  public void get(HttpServletResponse response) {
+    try{
+      String path = ResourceUtils.getURL("classpath:").getPath();
+      String finalPath = path + "templates/index.html";
+      File file = new File(finalPath);
+      InputStream in = new FileInputStream(file);
+      OutputStream out = response.getOutputStream();
+      byte[] buffer = IOUtils.toByteArray(in);
+      out.write(buffer, 0, buffer.length);
+    } catch (Exception ignored) {
+    }
+  }
+
 }
