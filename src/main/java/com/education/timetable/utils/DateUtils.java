@@ -1,6 +1,6 @@
 package com.education.timetable.utils;
 
-import com.education.timetable.config.StringResources;
+import com.education.timetable.config.SR;
 import com.education.timetable.exception.TimeTableException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -32,12 +32,12 @@ public class DateUtils {
    */
   public static void validateTime(Date startTime, Date endTime) {
     if (startTime == null || endTime == null) {
-      throw new TimeTableException(StringResources.getString("BEGIN.TIME.OR.END.TIME.NOT.NULL"));
+      throw new TimeTableException(SR.getString("BEGIN.TIME.OR.END.TIME.NOT.NULL"));
     }
     isSharpTime(startTime);
     isSharpTime(endTime);
     if (startTime.after(endTime) || startTime.equals(endTime)) {
-      throw new TimeTableException(StringResources.getString("BEGIN.TIME.MUST.BEFORE.END.TIME"));
+      throw new TimeTableException(SR.getString("BEGIN.TIME.MUST.BEFORE.END.TIME"));
     }
   }
 
@@ -74,7 +74,7 @@ public class DateUtils {
     if (!"00".equals(minutes) || !"00".equals(seconds)) {
       throw new TimeTableException(
           HttpStatus.BAD_REQUEST.value(),
-          String.format(StringResources.getString("INCORRECT.SHARP.TIME") + ": %s", date));
+          String.format(SR.getString("INCORRECT.SHARP.TIME") + ": %s", date));
     }
   }
 

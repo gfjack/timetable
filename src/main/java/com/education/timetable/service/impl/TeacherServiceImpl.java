@@ -1,6 +1,6 @@
 package com.education.timetable.service.impl;
 
-import com.education.timetable.config.StringResources;
+import com.education.timetable.config.SR;
 import com.education.timetable.exception.ObjectNotFoundException;
 import com.education.timetable.exception.ServerException;
 import com.education.timetable.exception.TimeTableException;
@@ -30,7 +30,7 @@ public class TeacherServiceImpl implements TeacherService {
   private TeacherPo load(Long teacherId) {
     TeacherPo teacherPo = teacherRepository.findOne(teacherId);
     if (ObjectUtils.isEmpty(teacherPo)) {
-      throw new ObjectNotFoundException(StringResources.getString("TEACHER.NOT.FOUND"));
+      throw new ObjectNotFoundException(SR.getString("TEACHER.NOT.FOUND"));
     }
 
     return teacherPo;
@@ -70,9 +70,9 @@ public class TeacherServiceImpl implements TeacherService {
       load(teacherId);
       teacherRepository.delete(teacherId);
     } catch (ObjectNotFoundException e) {
-      throw new ObjectNotFoundException(StringResources.getString("TEACHER.NOT.FOUND"));
+      throw new ObjectNotFoundException(SR.getString("TEACHER.NOT.FOUND"));
     } catch (Exception e) {
-      throw new ServerException(StringResources.getString("FAILED.TO.DELETE.TEACHER"));
+      throw new ServerException(SR.getString("FAILED.TO.DELETE.TEACHER"));
     }
   }
 

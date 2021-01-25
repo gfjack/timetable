@@ -1,6 +1,6 @@
 package com.education.timetable.service.impl;
 
-import com.education.timetable.config.StringResources;
+import com.education.timetable.config.SR;
 import com.education.timetable.constants.enums.Week;
 import com.education.timetable.exception.ObjectNotFoundException;
 import com.education.timetable.exception.ServerException;
@@ -32,7 +32,7 @@ public class CourseServiceImpl implements CourseService {
   private CoursePo load(UUID courseId) {
     CoursePo coursePo = courseRepository.findByCourseId(courseId);
     if (null == coursePo) {
-      throw new ObjectNotFoundException(StringResources.getString("COURSE.NOT.FOUND"));
+      throw new ObjectNotFoundException(SR.getString("COURSE.NOT.FOUND"));
     }
 
     return coursePo;
@@ -73,7 +73,7 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public List<CourseVo> search(CourseSearchVo courseSearchVo) {
     if (null == courseSearchVo.getStudentId()) {
-      throw new TimeTableException(StringResources.getString("STUDENT.ID.CANNOT.BE.NULL"));
+      throw new TimeTableException(SR.getString("STUDENT.ID.CANNOT.BE.NULL"));
     }
     List<CoursePo> courses =
         getStudentRegisteredCourses(courseSearchVo.getStudentId(), courseSearchVo.getDay());
@@ -100,9 +100,9 @@ public class CourseServiceImpl implements CourseService {
       load(courseId);
       courseRepository.delete(courseId);
     } catch (ObjectNotFoundException e) {
-      throw new ObjectNotFoundException(StringResources.getString("COURSE.NOT.FOUND"));
+      throw new ObjectNotFoundException(SR.getString("COURSE.NOT.FOUND"));
     } catch (Exception e) {
-      throw new ServerException(StringResources.getString("FAILED.TO.DELETE.COURSE"));
+      throw new ServerException(SR.getString("FAILED.TO.DELETE.COURSE"));
     }
   }
 

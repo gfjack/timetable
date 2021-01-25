@@ -1,6 +1,6 @@
 package com.education.timetable.service.impl;
 
-import com.education.timetable.config.StringResources;
+import com.education.timetable.config.SR;
 import com.education.timetable.converter.StudentConverter;
 import com.education.timetable.exception.ObjectNotFoundException;
 import com.education.timetable.exception.ServerException;
@@ -31,7 +31,7 @@ public class StudentServiceImpl implements StudentService {
   private StudentPo load(Long studentId) {
     StudentPo studentPo = studentRepository.findOne(studentId);
     if (null == studentPo) {
-      throw new ObjectNotFoundException(StringResources.getString("STUDENT.NOT.FOUND"));
+      throw new ObjectNotFoundException(SR.getString("STUDENT.NOT.FOUND"));
     }
 
     return studentPo;
@@ -76,9 +76,9 @@ public class StudentServiceImpl implements StudentService {
       getOne(studentId);
       studentRepository.delete(studentId);
     } catch (ObjectNotFoundException e) {
-      throw new ObjectNotFoundException(StringResources.getString("STUDENT.NOT.FOUND"));
+      throw new ObjectNotFoundException(SR.getString("STUDENT.NOT.FOUND"));
     } catch (Exception e) {
-      throw new ServerException(StringResources.getString("FAILED.TO.DELETE.STUDENT"));
+      throw new ServerException(SR.getString("FAILED.TO.DELETE.STUDENT"));
     }
   }
 
@@ -117,7 +117,7 @@ public class StudentServiceImpl implements StudentService {
       coursePo.setRegisteredStudents(registeredStudent);
       courseRepository.save(coursePo);
     } else {
-      throw new TimeTableException(StringResources.getString("STUDENT.ALREADY.REGISTERED"));
+      throw new TimeTableException(SR.getString("STUDENT.ALREADY.REGISTERED"));
     }
     studentRegisterVo.setSuccess(true);
     return studentRegisterVo;
@@ -131,7 +131,7 @@ public class StudentServiceImpl implements StudentService {
     // 检测是否已经注册
     List<Long> registeredStudent = coursePo.getRegisteredStudents();
     if (!registeredStudent.contains(studentWithdrawVo.getStudentId())) {
-      throw new TimeTableException(StringResources.getString("STUDENT.NOT.REGISTER"));
+      throw new TimeTableException(SR.getString("STUDENT.NOT.REGISTER"));
     } else {
       registeredStudent.remove(studentWithdrawVo.getStudentId());
       coursePo.setRegisteredStudents(registeredStudent);

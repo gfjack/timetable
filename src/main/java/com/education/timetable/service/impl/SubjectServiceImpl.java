@@ -1,6 +1,6 @@
 package com.education.timetable.service.impl;
 
-import com.education.timetable.config.StringResources;
+import com.education.timetable.config.SR;
 import com.education.timetable.exception.ObjectNotFoundException;
 import com.education.timetable.exception.ServerException;
 import com.education.timetable.model.entity.SubjectPo;
@@ -29,7 +29,7 @@ public class SubjectServiceImpl implements SubjectService {
   private SubjectPo load(UUID subjectId) {
     SubjectPo subjectPo = subjectRepository.findBySubjectId(subjectId);
     if (ObjectUtils.isEmpty(subjectPo)) {
-      throw new ObjectNotFoundException(StringResources.getString("SUBJECT.NOT.FOUND"));
+      throw new ObjectNotFoundException(SR.getString("SUBJECT.NOT.FOUND"));
     }
 
     return subjectPo;
@@ -67,9 +67,9 @@ public class SubjectServiceImpl implements SubjectService {
       load(subjectId);
       subjectRepository.delete(subjectId);
     } catch (ObjectNotFoundException e) {
-      throw new ObjectNotFoundException(StringResources.getString("SUBJECT.NOT.FOUND"));
+      throw new ObjectNotFoundException(SR.getString("SUBJECT.NOT.FOUND"));
     } catch (Exception e) {
-      throw new ServerException(StringResources.getString("FAILED.TO.DELETE.SUBJECT"));
+      throw new ServerException(SR.getString("FAILED.TO.DELETE.SUBJECT"));
     }
   }
 

@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-// TODO: 11/30/2020 jack
 @Api("课程api")
 public interface CourseApi {
 

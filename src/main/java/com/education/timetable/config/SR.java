@@ -15,19 +15,19 @@ import java.util.*;
  * @author vime
  * @since 0.9.6
  */
-public class StringResources {
+public class SR {
 
-  private static StringResources provider;
+  private static SR provider;
 
   static {
-    provider = new StringResources();
+    provider = new SR();
   }
 
-  public static void setProvider(StringResources provider) {
-    StringResources.provider = provider;
+  public static void setProvider(SR provider) {
+    SR.provider = provider;
   }
 
-  public static StringResources getProvider() {
+  public static SR getProvider() {
     return provider;
   }
 
